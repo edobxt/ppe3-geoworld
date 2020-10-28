@@ -10,9 +10,53 @@
             $continent = 'Asia';
             $desPays = getCountriesByContinent($continent);
          ?>
-       <code>
-         <?php var_dump($desPays[0]); ?>
-      </code>
+       <div>
+         <style>
+           table, th, td {
+             border: 1px solid black;
+             border-collapse: collapse;
+           }
+           th, td {
+             padding: 5px;
+             text-align: left;
+           }
+         </style>
+         <table>
+           <tr>
+             <th>Name</th>
+             <th>Region</th>
+             <th>SurfaceArea</th>
+             <th>IndepYear</th>
+             <th>Population</th>
+             <th>LifeExpectancy</th>
+             <th>GNP</th>
+             <th>GNPOld</th>
+             <th>LocalName</th>
+             <th>GovernmentForm</th>
+             <th>HeadOfState</th>
+           </tr>
+
+           <?php 
+             for ($i = 0; $i < count($desPays); $i++) {
+               echo "<tr>";
+
+               echo "<td>" . $desPays[$i]->Name . "</td>";
+               echo "<td>" . $desPays[$i]->Region . "</td>";
+               echo "<td>" . $desPays[$i]->SurfaceArea . "</td>";
+               echo "<td>" . $desPays[$i]->IndepYear . "</td>";
+               echo "<td>" . $desPays[$i]->Population . "</td>";
+               echo "<td>" . $desPays[$i]->LifeExpectancy . "</td>";
+               echo "<td>" . $desPays[$i]->GNP . "</td>";
+               echo "<td>" . $desPays[$i]->GNPOld . "</td>";
+               echo "<td>" . $desPays[$i]->LocalName . "</td>";
+               echo "<td>" . $desPays[$i]->GovernmentForm . "</td>";
+               echo "<td>" . $desPays[$i]->HeadOfState . "</td>";
+
+               echo "</tr>";
+             }
+           ?>
+         </table>
+      </div>
     </div>
     <p></p>
     <section class="jumbotron text-center">
