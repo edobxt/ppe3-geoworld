@@ -1,8 +1,5 @@
 ﻿#ppe3-geoworld
-Composition du groupe : 
-    - JEAN-POMBO Jennifer 
-    - GOUPTAR-TICKET Yanissa
-    - KANCEL Jonathan
+Composition du groupe : JEAN-POMBO Jennifer, GOUPTAR-TICKET Yanissa, KANCEL Jonathan
 
 ## Objectifs
 Proposer une interface de consultation agréable,
