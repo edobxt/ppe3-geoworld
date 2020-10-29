@@ -3,11 +3,31 @@
 <main role="main" class="flex-shrink-0">
 
   <div class="container">
-    <h1>Les pays en Asie </h1>
-    <div>
+    <?php 
+    if(isset($_POST['submit']))
+    {
+      $varContinent = $_POST['formContinent'];
+    }
+    ?>
+    <h2>Select a continent</h2>
+    <form method="POST">
+          <select name="formContinent">
+            <option value="">Select...</option>
+            <option value="Asia">Asia</option>
+            <option value="Europe">Europe</option>
+            <option value="North America">North America</option>
+            <option value="South America">South America</option>
+            <option value="Africa">Africa</option>
+            <option value="Oceania">Oceania</option>
+            <option value="Antarctica">Antarctica</option>
+            <input type="submit" name="submit" value="Select Continent" />
+          </select>
+          </form>
+    <h1>Country in <?php echo $varContinent ?> </h1>
+    <div class="continent-table">
         <?php
             require_once 'inc/manager-db.php';
-            $continent = 'Asia';
+            $continent = $varContinent;
             $desPays = getCountriesByContinent($continent);
          ?>
        <div>
@@ -21,6 +41,7 @@
              text-align: left;
            }
          </style>
+
          <table>
            <tr>
              <th>Name</th>
@@ -36,23 +57,23 @@
              <th>HeadOfState</th>
            </tr>
 
-           <?php 
+           <?php
              for ($i = 0; $i < count($desPays); $i++) {
-               echo "<tr>";
+              echo "<tr>";
 
-               echo "<td>" . $desPays[$i]->Name . "</td>";
-               echo "<td>" . $desPays[$i]->Region . "</td>";
-               echo "<td>" . $desPays[$i]->SurfaceArea . "</td>";
-               echo "<td>" . $desPays[$i]->IndepYear . "</td>";
-               echo "<td>" . $desPays[$i]->Population . "</td>";
-               echo "<td>" . $desPays[$i]->LifeExpectancy . "</td>";
-               echo "<td>" . $desPays[$i]->GNP . "</td>";
-               echo "<td>" . $desPays[$i]->GNPOld . "</td>";
-               echo "<td>" . $desPays[$i]->LocalName . "</td>";
-               echo "<td>" . $desPays[$i]->GovernmentForm . "</td>";
-               echo "<td>" . $desPays[$i]->HeadOfState . "</td>";
+              echo "<td>" . $desPays[$i]->Name . "</td>";
+              echo "<td>" . $desPays[$i]->Region . "</td>";
+              echo "<td>" . $desPays[$i]->SurfaceArea . "</td>";
+              echo "<td>" . $desPays[$i]->IndepYear . "</td>";
+              echo "<td>" . $desPays[$i]->Population . "</td>";
+              echo "<td>" . $desPays[$i]->LifeExpectancy . "</td>";
+              echo "<td>" . $desPays[$i]->GNP . "</td>";
+              echo "<td>" . $desPays[$i]->GNPOld . "</td>";
+              echo "<td>" . $desPays[$i]->LocalName . "</td>";
+              echo "<td>" . $desPays[$i]->GovernmentForm . "</td>";
+              echo "<td>" . $desPays[$i]->HeadOfState . "</td>";
 
-               echo "</tr>";
+              echo "</tr>";
              }
            ?>
          </table>
