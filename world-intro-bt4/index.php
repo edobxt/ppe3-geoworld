@@ -9,8 +9,9 @@
       $varContinent = $_POST['formContinent'];
     }
     ?>
+    <center>
     <h2>Select a continent</h2>
-    <form method="POST">
+    <form method="POST" class="dropdown">
           <select name="formContinent">
             <option value="">Select...</option>
             <option value="Asia">Asia</option>
@@ -23,6 +24,7 @@
             <input type="submit" name="submit" value="Select Continent" />
           </select>
           </form>
+    </center>
     <h1>Country in <?php echo $varContinent ?> </h1>
     <div class="continent-table">
         <?php
