@@ -4,6 +4,7 @@
 
   <div class="container">
     <?php 
+    $varContinent="";
     if(isset($_POST['submit']))
     {
       $varContinent = $_POST['formContinent'];
@@ -24,8 +25,13 @@
             <input type="submit" name="submit" value="Select Continent" />
           </select>
           </form>
-    </center>
-    <h1>Country in <?php echo $varContinent ?> </h1>
+      </center>
+     <?php if($varContinent=="") {
+       echo "<h1>Please select a continent</h1>";
+     } else {
+       echo "<h1>Country in" . $varContinent . "</h1>";
+     } ?>
+    
     <div class="continent-table">
         <?php
             require_once 'inc/manager-db.php';
