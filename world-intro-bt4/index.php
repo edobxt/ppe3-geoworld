@@ -29,7 +29,7 @@
      <?php if($varContinent=="") {
        echo "<h1>Please select a continent</h1>";
      } else {
-       echo "<h1>Country in" . $varContinent . " </h1>";
+       echo "<h1>Country in " . $varContinent . " : </h1>";
      } ?>
     
     <div class="continent-table">
