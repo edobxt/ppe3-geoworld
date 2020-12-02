@@ -26,8 +26,11 @@
         Item2
     </a>
     <div class="right menu">
-        <a class="ui item">
+        <a class="ui item" href="login.php">
             Login
+        </a>
+        <a class="ui item" href="register.php">
+            Register
         </a>
         <a class="item" href="todo-projet.php">
             ProjetPPE-SLAM
