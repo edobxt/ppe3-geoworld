@@ -13,7 +13,7 @@
       <center>
         <h2>Select a continent</h2>
         <form method="POST" class="dropdown">
-          <select name="formContinent">
+          <select name="formContinent" class="ui search dropdown">
                 <option value="">Select...</option>
                 <option value="Asia">Asia</option>
                 <option value="Europe">Europe</option>
@@ -22,7 +22,7 @@
                 <option value="Africa">Africa</option>
                 <option value="Oceania">Oceania</option>
                 <option value="Antarctica">Antarctica</option>
-                <input type="submit" name="submit" value="Select Continent" />
+                <input type="submit" name="submit" value="Select Continent" class="ui button"/>
               </select>
           </form>
       </center>

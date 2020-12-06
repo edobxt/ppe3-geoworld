@@ -35,10 +35,10 @@
         <a class="item" href="todo-projet.php">
             ProjetPPE-SLAM
         </a>
-        <div class="item">
+        <div class="ui search">
             <div class="ui icon input">
-                <input type="text" placeholder="Search...">
-                <i class="search link icon"></i>
+                <input class="prompt" type="text" placeholder="Search...">
+                <div class="results"></div>
             </div>
         </div>
 
