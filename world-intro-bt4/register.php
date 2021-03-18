@@ -13,7 +13,7 @@
         $email = htmlspecialchars($_POST['email']);
         if(isset($_POST['categorie']))
         {
-            $categorie = $_POST['categorie']; 
+            $idCategories = $_POST['categorie']; 
         }
 
         //Chiffrage du mot de passe 
@@ -21,25 +21,25 @@
         $mdp_confirm = password_hash($_POST['mdp_confirm'], PASSWORD_DEFAULT);
 
         //Vérification des champs
-        if((!empty($nom)) && (!empty($prenom)) && (!empty($email)) && (!empty($categorie)) && (!empty($mdp)) && (!empty($mdp_confirm))) 
+        if((!empty($nom)) && (!empty($prenom)) && (!empty($email)) && (!empty($idCategories)) && (!empty($mdp)) && (!empty($mdp_confirm))) 
         {
 
             //Vérification de l'email
             if (preg_match("!^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-zA-Z]{2,4}$!", $email))
             {
-                if(isset($categorie)){
+                if(isset($idCategories)){
 
                     //Verification du mot de passe 
                     if($_POST['mdp'] == $_POST['mdp_confirm'])
                     {
                         $database = connect_users();
-                        $req = $database->prepare("INSERT INTO users(nom, prenom, email, mdp, categorie) VALUES(?, ?, ?, ?, ?)");
+                        $req = $database->prepare("INSERT INTO users(nom, prenom, email, mdp, idCategories) VALUES(?, ?, ?, ?, ?)");
                         $req->execute(array(
                             $nom,
                             $prenom,
                             $email,
                             $mdp,
-                            $categorie
+                            $idCategories
                         ));
                         header('refresh:2; url=login.php');
 
@@ -78,25 +78,36 @@
                 </h2>
 
                 <form method="post">
-                    <input type="text" name="nom" placeholder="Your last name" />
-
-                    <input type="text" name="prenom" placeholder="Your first name" /></br><br>
-
-                    <input type="email" name="email" placeholder="Your E-Mail"></br><br>
-
-                    <label for="etudiant">Who are you ?</label><br>
-                    <input type="radio" name="categorie" value="Student">
-                    <label for="etudiant"> a student</label><br>
-
-                    <input type="radio" name="categorie" value="Profesor">
-                    <label for="professeur">a professor</label><br><br>
-
-                    <input type="password" name="mdp" placeholder="Enter your password" /></br><br>
-
-                    <input type="password" name="mdp_confirm" 
-                        placeholder="Confirm your password" /></br><br>
-
-                    <input type="submit" name="submit" value="Next" class="btn btn-primary">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <input type="text" class="form-control" name="nom" placeholder="Your last name" />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <input type="text" class="form-control" name="prenom" placeholder="Your first name" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" name="email" placeholder="Your E-Mail">
+                    </div>
+                    <h3>Who are you ?</h3>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="categorie" value="2">
+                        <label for="etudiant">Student</label><br>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="categorie" value="3">
+                        <label for="professeur">Professor</label><br><br>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <input type="password" class="form-control" name="mdp" placeholder="Enter your password" />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <input type="password" class="form-control" name="mdp_confirm" placeholder="Confirm your password" />
+                        </div>
+                    </div>
+                    <br>
+                    <input type="submit" name="submit" value="Validate" class="btn btn-primary">
                 </form>
             </div>
         </center>

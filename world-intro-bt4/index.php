@@ -9,23 +9,28 @@
 
 <main role="main" class="flex-shrink-0">
 
-  <div class="container">
+  <div class="container-fluid">
     <?php 
-    // Initialisation de la variable $varContinent
-    $varContinent="";
-    // Récupération de la valeur de l'input dans la variable $varContinent
-    if(isset($_POST['submit']))
-    {
-      $varContinent = $_POST['formContinent'];
-    }
+      // Initialisation de la variable $varContinent
+      $varContinent="";
+      // Récupération de la valeur de l'input dans la variable $varContinent
+      if(isset($_POST['submit']))
+      {
+        $varContinent = $_POST['formContinent'];
+      }
+      // Informations sur qui est connecté
+      if(isset($_SESSION['idUsers']))
+      {
+        //echo '<h5>Connect as ' . $_SESSION['nom'] . " " . $_SESSION['prenom'] . ".</h5>";
+      }
     ?>
 
     <center>
-      <h2>Select a continent</h2>
+      <!--<h2>Select a continent</h2>-->
       <!-- Menu Select permettant de choisir les continents -->
       <form method="POST" class="dropdown">
         <div class="col">
-          <select name="formContinent" class="form-control">
+          <select name="formContinent" class="form-control col-md-3">
             <option value="">Select...</option>
             <option value="Asia">Asia</option>
             <option value="Europe">Europe</option>
@@ -42,44 +47,27 @@
     </center>
 
     <?php 
-        // Information sur qui est connecté
-        if(isset($_SESSION['idUsers']))
-        {
-          echo '<h4>Connect as ' . $_SESSION['nom'] . " " . $_SESSION['prenom'] . ".</h4>";
-        }
         // Affichage du continent choisi
         if($varContinent=="") 
         {
-          echo "<h1>Please select a continent</h1>";
+          echo "<br><center><h1>Select a continent to see his countries.</h1></center>";
         } 
         else 
         {
           echo "<h1>Countries in " . $varContinent . " : </h1>";
-        } 
+         
       ?>
 
     <div class="continent-table">
       <?php
-            // Recherche des pays du continent choisit
-            $continent = $varContinent;
-            $desPays = getCountriesByContinent($continent);
-         ?>
-      <div>
-        <!-- Style du tableau -->
-        <style>
-          table, th, td 
-          {
-            border: 1px solid black;
-            border-collapse: collapse;
-          }
-          th, td 
-          {
-            padding: 5px;
-            text-align: left;
-          }
-        </style>
-        <!-- Tableau contenant les informations -->
-        <table>
+        // Recherche des pays du continent choisit
+        $continent = $varContinent;
+        $desPays = getCountriesByContinent($continent);
+      ?>
+
+      <!-- Tableau contenant les informations -->
+      <table class="table table-bordered">
+        <thead class="thead-dark">
           <tr>
             <th>Name</th>
             <th>Region</th>
@@ -93,13 +81,17 @@
             <th>GovernmentForm</th>
             <th>HeadOfState</th>
           </tr>
-
+        </thead>
+        <tbody>
           <?php
-              //boucle affichant les informations
-              for ($i = 0; $i < count($desPays); $i++) {
+              
+              // Boucle affichant les informations
+              for ($i = 0; $i < count($desPays); $i++) 
+              {
                 echo "<tr>";
 
-                echo "<td>" . $desPays[$i]->Name . "</td>";
+                echo "<td><a href='view_city.php?idCountry=" . $desPays[$i]->id . "&Name=" . $desPays[$i]->Name 
+                . "'target='_blank' class='text-primary'>" . $desPays[$i]->Name . "</a></td>";
                 echo "<td>" . $desPays[$i]->Region . "</td>";
                 echo "<td>" . $desPays[$i]->SurfaceArea . "</td>";
                 echo "<td>" . $desPays[$i]->IndepYear . "</td>";
@@ -110,18 +102,21 @@
                 echo "<td>" . $desPays[$i]->LocalName . "</td>";
                 echo "<td>" . $desPays[$i]->GovernmentForm . "</td>";
                 echo "<td>" . $desPays[$i]->HeadOfState . "</td>";
-
+                
                 echo "</tr>";
-             }
-           ?>
-        </table>
-      </div>
+              }
+              }
+            ?>
+        </tbody>
+      </table>
     </div>
     <p></p>
   </div>
 </main>
 
 <?php
-require_once 'javascripts.php';
-require_once 'footer.php';
+  // Ajout de script Javascript
+  require_once 'javascripts.php';
+  // Ajout du footer
+  require_once 'footer.php';
 ?>

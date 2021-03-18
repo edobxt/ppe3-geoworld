@@ -1,10 +1,10 @@
 <?php
 ini_set('display_errors', 1);
-define('DB_NAME', 'world_users');
-define('DB_DSN', 'mysql:host=localhost;dbname=' . DB_NAME . ';charset=utf8');
-define('DB_USER', 'geoworld');
-define('DB_PASSWORD', 'geoworldadmin');
-define('DEBUG', false);
+define('DB_NAME2', 'world_users');
+define('DB_DSN2', 'mysql:host=localhost;dbname=' . DB_NAME2 . ';charset=utf8');
+define('DB_USER2', 'geoworld');
+define('DB_PASSWORD2', 'geoworldadmin');
+define('DEBUG2', false);
 
 $dbError = '';
 
@@ -18,10 +18,10 @@ function connect_users()
     PDO::ATTR_EMULATE_PREPARES => false
   );
   try {
-    return new PDO(DB_DSN, DB_USER, DB_PASSWORD, $opt);
+    return new PDO(DB_DSN2, DB_USER2, DB_PASSWORD2, $opt);
   } catch (PDOException $e) {
     $dbError = 'Oups ! Connexion SGBD impossible !';
-    if (DEBUG) :
+    if (DEBUG2) :
       $dbError .= "<br/>" . $e->getMessage();
     endif;
   }

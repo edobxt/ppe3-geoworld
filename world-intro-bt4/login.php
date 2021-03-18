@@ -39,13 +39,22 @@
                     $_SESSION['prenom'] = $resultat->prenom;
                     $_SESSION['email'] = $resultat->email;
                     $_SESSION['mdp'] = $resultat->mdp;
-                    $_SESSION['categorie'] = $resultat->categorie;
+                    $_SESSION['idCategories'] = $resultat->idCategories;
+
+                    $idUsers = $_SESSION['idUsers']; 
 
                     $messageReussi = "You are connected !";
-                    // Redirection vers la page d'accueil après 2 secondes.
+                    // Redirection vers la bonne partie en fonction de la catégorie après 2 secondes.
                     if(isset($_SESSION['email']))
                     {
-                        header('refresh:2; url=index.php');
+                        if($_SESSION['idCategories'] == 2)
+                        {
+                            header('refresh:2; url=student.php?idUsers='.$idUsers);
+                        }
+                        else
+                        {
+                            header('refresh:2; url=professor.php?idUsers='.$idUsers);
+                        }
                     }
                 }
                 else
@@ -78,12 +87,17 @@
                 </h2>
                 
                 <form method="post">
-                    <input type="text" name="email" placeholder="Mail" /></br><br>
-                    <input type="password" name="mdp" placeholder="Password" /></br><br>
+                    <div class="form-group col-md-5">
+                        <input type="text" class="form-control" name="email" placeholder="Mail" />
+                    </div>
+                    <div class="form-group col-md-5">
+                        <input type="password" class="form-control" name="mdp" placeholder="Password" />
+                    </div>
+                    
                     <input type="submit" name="submit" value="Login" class="btn btn-primary">
                 </form>
-
-                <h3>Vous n'avez pas de compte ? </h3> <a href="register.php">Cliquez ici</a>
+                <br>
+                <h4>You don't have an account ? </h4> <a href="register.php">Click here</a>
             </div>
         </center>
     </div>
