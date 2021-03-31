@@ -52,4 +52,52 @@
      $prep->execute();
      return $prep->fetchAll();
   }
+
+  /**
+ * Fonction permettant d'effectuer des requêtes plus simplement
+*/
+function requete($requete)
+{
+    global $pdo;
+
+    // Définition du type de requête
+    $def_type = explode(" ", $requete);
+    $type_req = $def_type[0];
+    // Si c'est une SELECT
+    if ($type_req == "SELECT")
+    {
+        $Myresult = $pdo->query($requete);
+        $Myresult->setFetchMode(PDO::FETCH_ASSOC);
+        $response = $Myresult->fetch();
+
+        return $response;
+    }
+    // Si c'est autre chose qu'une SELECT
+    else {
+        $response = $pdo->exec($requete);
+    }
+}
+
+/**
+ * Fonction qui retourne le résultat d'une requête à fetch pour une boucle
+    */
+function toFetch($requete)
+{
+    global $pdo;
+
+    $Myresult = $pdo->query($requete);
+    $Myresult->setFetchMode(PDO::FETCH_ASSOC);
+    return $Myresult;
+}
+/**
+ * Fonction qui retourne le nombre de résultat d'une requête
+    */
+function toCount($requete)
+{
+    global $pdo;
+
+    $Myresult = toFetch($requete);
+    $nb_result = $Myresult->rowCount();
+    return $nb_result;
+}
 ?>

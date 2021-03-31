@@ -8,110 +8,90 @@
 ?>
 
 <main role="main" class="flex-shrink-0">
-
-  <div class="container-fluid">
-    <?php 
-      // Initialisation de la variable $varContinent
-      $varContinent="";
-      // Récupération de la valeur de l'input dans la variable $varContinent
-      if(isset($_POST['submit']))
-      {
-        $varContinent = $_POST['formContinent'];
-      }
-      // Informations sur qui est connecté
-      if(isset($_SESSION['idUsers']))
-      {
-        //echo '<h5>Connect as ' . $_SESSION['nom'] . " " . $_SESSION['prenom'] . ".</h5>";
-      }
-    ?>
-
-    <center>
-      <!--<h2>Select a continent</h2>-->
-      <!-- Menu Select permettant de choisir les continents -->
-      <form method="POST" class="dropdown">
-        <div class="col">
-          <select name="formContinent" class="form-control col-md-3">
-            <option value="">Select...</option>
-            <option value="Asia">Asia</option>
-            <option value="Europe">Europe</option>
-            <option value="North America">North America</option>
-            <option value="South America">South America</option>
-            <option value="Africa">Africa</option>
-            <option value="Oceania">Oceania</option>
-            <option value="Antarctica">Antarctica</option>
-          </select>
-        </div>
-        </br>
-        <input type="submit" name="submit" value="Select Continent" class="btn btn-light" />
-      </form>
-    </center>
-
-    <?php 
-        // Affichage du continent choisi
-        if($varContinent=="") 
-        {
-          echo "<br><center><h1>Select a continent to see his countries.</h1></center>";
-        } 
-        else 
-        {
-          echo "<h1>Countries in " . $varContinent . " : </h1>";
-         
-      ?>
-
-    <div class="continent-table">
-      <?php
-        // Recherche des pays du continent choisit
-        $continent = $varContinent;
-        $desPays = getCountriesByContinent($continent);
-      ?>
-
-      <!-- Tableau contenant les informations -->
-      <table class="table table-bordered">
-        <thead class="thead-dark">
-          <tr>
-            <th>Name</th>
-            <th>Region</th>
-            <th>SurfaceArea</th>
-            <th>IndepYear</th>
-            <th>Population</th>
-            <th>LifeExpectancy</th>
-            <th>GNP</th>
-            <th>GNPOld</th>
-            <th>LocalName</th>
-            <th>GovernmentForm</th>
-            <th>HeadOfState</th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php
-              
-              // Boucle affichant les informations
-              for ($i = 0; $i < count($desPays); $i++) 
-              {
-                echo "<tr>";
-
-                echo "<td><a href='view_city.php?idCountry=" . $desPays[$i]->id . "&Name=" . $desPays[$i]->Name 
-                . "'target='_blank' class='text-primary'>" . $desPays[$i]->Name . "</a></td>";
-                echo "<td>" . $desPays[$i]->Region . "</td>";
-                echo "<td>" . $desPays[$i]->SurfaceArea . "</td>";
-                echo "<td>" . $desPays[$i]->IndepYear . "</td>";
-                echo "<td>" . $desPays[$i]->Population . "</td>";
-                echo "<td>" . $desPays[$i]->LifeExpectancy . "</td>";
-                echo "<td>" . $desPays[$i]->GNP . "</td>";
-                echo "<td>" . $desPays[$i]->GNPOld . "</td>";
-                echo "<td>" . $desPays[$i]->LocalName . "</td>";
-                echo "<td>" . $desPays[$i]->GovernmentForm . "</td>";
-                echo "<td>" . $desPays[$i]->HeadOfState . "</td>";
-                
-                echo "</tr>";
-              }
-              }
+    <div class="container-fluid">
+        <center>
+            <h2>Voir les données par :</h2>
+            <?php
+            if (isset($_REQUEST["data"]))
+            {
+                switch ($_REQUEST["data"])
+                {
+                    case "continent":
+                      echo "<h3>Continent</h3>";
+                    break;
+                    
+                    case "langues":
+                      echo "<h3>Langues parlées</h3>";
+                    break;
+                }
+            }
             ?>
-        </tbody>
-      </table>
+            <br>
+            <!-- La façon dont on veut voir les données -->
+            <select class="form-control col-md-3" onchange="location = this.value">
+                <option value="">Sélectionner...</option>
+                <option value="index.php?data=continent">Continent</option>
+                <option value="index.php?data=langues">Langues parlées</option>
+            </select>
+        </center>
+    <div class="container">
+    <br>
+        <div class="row">
+            <?php
+            if (isset($_REQUEST["data"]))
+            {
+                switch ($_REQUEST["data"])
+                {
+                    case "continent":
+                        $continent = "SELECT DISTINCT continent as result FROM country ORDER BY continent ASC";
+                        $requete = toFetch($continent);
+                    break;
+
+                    case "langues":
+                        $language = "SELECT name as result FROM language ORDER BY name ASC";
+                        $requete = toFetch($language);
+                    break;
+                }
+                
+                while ($response = $requete->fetch())
+                {
+            ?>
+                <div class="col-sm-4">
+                    <div class="card" style="width: 20rem; margin: 10px;">
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo $response["result"]  ?></h5>
+                            <?php
+                            switch ($_REQUEST["data"])
+                            {
+                                // Nombre de pays pour ce continent
+                                case "continent":
+                                    $continent = $response["result"];
+                                    $pays = "SELECT * FROM country WHERE continent = '$continent'";
+                                    $nbPays = toCount($pays);
+                                break;
+                                
+                                // Nombre de pays ayant cette langue comme officielle
+                                case "langues":
+                                    $langue = $response["result"];
+                                    $idLangueQuery = requete("SELECT id FROM language WHERE name = '$langue'");
+                                    $idLangue = $idLangueQuery["id"];
+                                    $pays = "SELECT idCountry FROM countrylanguage WHERE idLanguage = $idLangue";
+                                    $nbPays = toCount($pays);
+                                break;
+                            }
+                            ?>
+                            <h5><small><?php echo $nbPays  ?> pays</small></h5>
+                            <a href="#" class="card-link">Voir les pays</a>
+                        </div>
+                    </div>
+                </div>
+            <?php
+                }
+            }
+            ?>
+        </div>
     </div>
-    <p></p>
-  </div>
+  </div> 
 </main>
 
 <?php
