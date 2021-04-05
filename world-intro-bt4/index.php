@@ -7,6 +7,16 @@
   session_start(); 
 ?>
 
+<style>
+    body {
+        overflow-y: scroll;
+    }
+
+    .card-link:hover {
+        text-decoration: underline;
+    }
+</style>
+
 <main role="main" class="flex-shrink-0">
     <div class="container-fluid">
         <center>
@@ -42,50 +52,62 @@
             {
                 switch ($_REQUEST["data"])
                 {
+                    // Voir les données par continents
                     case "continent":
+                        // Obtenir la liste des continents
                         $continent = "SELECT DISTINCT continent as result FROM country ORDER BY continent ASC";
                         $requete = toFetch($continent);
+                        // Afficher la liste des continents
+                        while ($response = $requete->fetch())
+                        {
+                            $continent = $response["result"];
+                            // Obtenir le nombre de pays dans ce continent
+                            $pays = "SELECT * FROM country WHERE continent = '$continent'";
+                            $nbPays = toCount($pays);
+                            $link = "view_countries.php?continent=$continent";
+                        ?>
+                            <div class="col-sm-4">
+                                <div class="card" style="width: 20rem; margin: 10px;">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><?php echo $continent ?></h5>
+                                        <h5><small><?php echo $nbPays ?> pays</small></h5>
+                                        <a href="<?php echo $link ?>" class="card-link">Voir les pays</a>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php
+                        }
                     break;
-
+                    
+                    // Voir les données par langues
                     case "langues":
+                        // Obtenir la liste des langues parlées dans le monde
                         $language = "SELECT name as result FROM language ORDER BY name ASC";
                         $requete = toFetch($language);
+                        // Afficher la liste des langues
+                        while ($response = $requete->fetch())
+                        {
+                            $langue = $response["result"];
+                            // Obtenir l'id de la langue
+                            $idLangueQuery = requete("SELECT id FROM language WHERE name = '$langue'");
+                            $idLangue = $idLangueQuery["id"];
+                            // Obtenir le nombre de pays où la langue est parlée
+                            $pays = "SELECT idCountry FROM countrylanguage WHERE idLanguage = $idLangue";
+                            $nbPays = toCount($pays);
+                            $link = "view_countries.php?langue=$idLangue";
+                        ?>
+                            <div class="col-sm-4">
+                                <div class="card" style="width: 20rem; margin: 10px;">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><?php echo $langue ?></h5>
+                                        <h5><small><?php echo $nbPays ?> pays</small></h5>
+                                        <a href="<?php echo $link ?>" class="card-link">Voir les pays</a>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php
+                        }
                     break;
-                }
-                
-                while ($response = $requete->fetch())
-                {
-            ?>
-                <div class="col-sm-4">
-                    <div class="card" style="width: 20rem; margin: 10px;">
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo $response["result"]  ?></h5>
-                            <?php
-                            switch ($_REQUEST["data"])
-                            {
-                                // Nombre de pays pour ce continent
-                                case "continent":
-                                    $continent = $response["result"];
-                                    $pays = "SELECT * FROM country WHERE continent = '$continent'";
-                                    $nbPays = toCount($pays);
-                                break;
-                                
-                                // Nombre de pays ayant cette langue comme officielle
-                                case "langues":
-                                    $langue = $response["result"];
-                                    $idLangueQuery = requete("SELECT id FROM language WHERE name = '$langue'");
-                                    $idLangue = $idLangueQuery["id"];
-                                    $pays = "SELECT idCountry FROM countrylanguage WHERE idLanguage = $idLangue";
-                                    $nbPays = toCount($pays);
-                                break;
-                            }
-                            ?>
-                            <h5><small><?php echo $nbPays  ?> pays</small></h5>
-                            <a href="#" class="card-link">Voir les pays</a>
-                        </div>
-                    </div>
-                </div>
-            <?php
                 }
             }
             ?>
