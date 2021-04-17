@@ -70,6 +70,7 @@
     }
 ?>
 <!-- Formulaire de connexion -->
+
 <body>
     <div class="container">
         <center>
@@ -81,11 +82,16 @@
                         // Affichage du message d'erreur
                         if(isset($erreurMessage))
                         {
-                            echo '<p>' . $erreurMessage . '</p>';
+                            echo '<p style="color:#FA2C07; font-size:15px;">' . $erreurMessage . '</p>';
+                        }
+
+                        if(isset($messageReussi))
+                        {
+                            echo '<p style="color:#0ECC4C; font-size:15px;">' . $messageReussi . '</p>';
                         }
                     ?>
                 </h2>
-                
+
                 <form method="post">
                     <div class="form-group col-md-5">
                         <input type="text" class="form-control" name="email" placeholder="Mail" />
@@ -93,7 +99,7 @@
                     <div class="form-group col-md-5">
                         <input type="password" class="form-control" name="mdp" placeholder="Password" />
                     </div>
-                    
+
                     <input type="submit" name="submit" value="Login" class="btn btn-primary">
                 </form>
                 <br>

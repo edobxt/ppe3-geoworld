@@ -28,7 +28,8 @@ function connect_users()
 }
 
 // initialisation de la variable globale $pdo
-$pdo = connect_users();
+global $pdo_users;
+$pdo_users = connect_users();
 
 if ($dbError) {
   die('<div class="ui red inverted segment"> <p>'
