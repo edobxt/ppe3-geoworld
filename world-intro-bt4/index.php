@@ -119,9 +119,28 @@ body {
 
                     // Voir les données par villes
                     case "villes":
-                ?>
-                <h5>Liste des villes</h5>
+                        // Obtenir la liste des villes
+                        $villes = "SELECT *  FROM city ORDER BY name";
+                        $requete = toFetch($villes);
+                        // Afficher la liste des villes
+                        while ($response = $requete->fetch())
+                        {
+                            $nom = $response["Name"];
+                            $district = $response["District"];
+                            $population = $response["Population"];
+                            $idPays = $response["idCountry"];
+                        ?>
+                <div class="col-sm-4">
+                    <div class="card" style="width: 20rem; margin: 10px;">
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo $nom ?></h5>
+                            <h6>District : <?php echo $district ?></h6>
+                            <h5><small> Population :<?php echo $population ?></small></h5>
+                        </div>
+                    </div>
+                </div>
                 <?php
+                        }
                     break;
                 }
             }
