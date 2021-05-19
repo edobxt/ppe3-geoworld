@@ -37,6 +37,10 @@ body {
                     case "langues":
                       echo "<h4>Langues parlées</h4>";
                     break;
+
+                    case "villes":
+                      echo "<h4>Villes</h4>";
+                    break;
                 }
             }
             ?>
@@ -45,6 +49,7 @@ body {
                 <option value="">Sélectionner...</option>
                 <option value="index.php?data=continent">Continent</option>
                 <option value="index.php?data=langues">Langues parlées</option>
+                <option value="index.php?data=villes">Villes</option>
             </select>
         </center>
         <div class="container">
@@ -110,6 +115,13 @@ body {
                 </div>
                 <?php
                         }
+                    break;
+
+                    // Voir les données par villes
+                    case "villes":
+                ?>
+                <h5>Liste des villes</h5>
+                <?php
                     break;
                 }
             }
