@@ -12,11 +12,19 @@
     $idUsers = $_SESSION["idUsers"];
   }
 ?>
+
+<!-- Sélectionner un continent -->
 <div class="row">
     <div class="col-sm-3">
         <div class="col">
+            <!-- Bouton retour -->
+            <a class="btn btn-secondary btn-sm" href="professor.php?idUsers=<?php echo $idUsers;?>"><i
+                    class="bi bi-arrow-bar-left">Retour</i></a>
+            <br><br>
+
+            <!-- Selectionner un continent -->
             <select name="formContinent" class="form-control" onchange="location = this.value">
-                <option value="">Select...</option>
+                <option value="">Selectionner un continent</option>
                 <option value="updateData.php?Continent=Asia">Asia</option>
                 <option value="updateData.php?Continent=Europe">Europe</option>
                 <option value="updateData.php?Continent=North America">North America</option>
@@ -25,11 +33,14 @@
                 <option value="updateData.php?Continent=Oceania">Oceania</option>
                 <option value="updateData.php?Continent=Antarctica">Antarctica</option>
             </select>
+            <br>
         </div>
+
         </br>
     </div>
     <div class="col-sm-8">
         <?php
+        //Afficher tous les pays du continent sélectionné
             if(isset($_REQUEST["Continent"]))
             {
                 $continent = $_REQUEST["Continent"];
@@ -37,17 +48,44 @@
                 $data_pays = toFetch("SELECT * FROM country WHERE continent = '$continent'");
             
         ?>
-        <?php echo " <h1>Country in ".$continent."</h1>" ?>
+
+        <?php
+            echo " <br><h1>Country in ".$continent."</h1>" 
+        ?>
+
+        <!-- Afficher les pays dans des cartouches -->
         <div class="row">
             <?php
                 while ($response = $data_pays->fetch())
                 {
+                    $nom_pays = $response["Name"];
+                    $id_pays = $response["id"];
             ?>
             <div class="col-sm-4">
+                <!-- CSS des cartouches -->
+                <style>
+                a {
+                    text-decoration: none;
+                    color: #000;
+                }
+
+                .card:hover {
+                    text-decoration: #0000;
+                    background-color: #EBF5FB;
+                }
+
+                a:hover {
+                    font-weight: bold;
+                    text-decoration: none;
+                }
+                </style>
+
                 <div class="card" style="width: 15rem; margin:10px; text-align:center;">
+                    <!-- Lien pour modifier le pays -->
                     <div class="card-body">
-                        <?php echo $response["Name"] ?>
+                        <a href="updateCountries.php?idCountry=<?php echo $id_pays; ?>"><?php echo $nom_pays; ?></a>
                     </div>
+
                 </div>
             </div>
             <?php
