@@ -10,9 +10,11 @@
         $email = htmlspecialchars($_POST['email']);
         $mdp = password_hash($_POST['mdp'], PASSWORD_DEFAULT);
 
+        //Verification des champs
         if((!empty($email)) && (!empty($mdp)))
         {
             $database = connect_users();
+
             //Récupération du mail et de son mdp hashé
             $req = $database->prepare("SELECT * FROM users WHERE email = ?");
             $req->execute(array(
@@ -25,7 +27,7 @@
 
             if(!$resultat)
             {
-                $erreurMessage = 'Wrong mail or password !';
+                $erreurMessage = 'Adresse mail ou mot de passe incorrect. Réessayer!';
             }
             else 
             {
@@ -43,7 +45,7 @@
 
                     $idUsers = $_SESSION['idUsers']; 
 
-                    $messageReussi = "You are connected !";
+                    $messageReussi = "Vous êtes connecté.";
                     // Redirection vers la bonne partie en fonction de la catégorie après 2 secondes.
                     if(isset($_SESSION['email']))
                     {
@@ -59,13 +61,13 @@
                 }
                 else
                 {
-                    $erreurMessage = 'Wrong mail or password !';
+                    $erreurMessage = 'Adresse mail ou mot de passe incorrect.';
                 }
             }
         }
         else
         {
-            $erreurMessage = "Please complete all fields !";
+            $erreurMessage = "Remplir tous les champs.";
         }
     }
 ?>
@@ -75,11 +77,12 @@
     <div class="container">
         <center>
             <div class="jumbotron">
-                <h1>Login</h1><br>
+                <!--<i class="bi bi-person-circle" style="font-size:30px;"></i>-->
+                <h1>Connexion</h1><br>
 
                 <h2>
                     <?php 
-                        // Affichage du message d'erreur
+                        // Affichage du message d'erreur ou réussite
                         if(isset($erreurMessage))
                         {
                             echo '<p style="color:#FA2C07; font-size:15px;">' . $erreurMessage . '</p>';
@@ -94,16 +97,16 @@
 
                 <form method="post">
                     <div class="form-group col-md-5">
-                        <input type="text" class="form-control" name="email" placeholder="Mail" />
+                        <input type="email" class="form-control" name="email" placeholder="Adresse mail" required />
                     </div>
                     <div class="form-group col-md-5">
-                        <input type="password" class="form-control" name="mdp" placeholder="Password" />
+                        <input type="password" class="form-control" name="mdp" placeholder="Mot de passe" required />
                     </div>
 
-                    <input type="submit" name="submit" value="Login" class="btn btn-primary">
+                    <input type="submit" name="submit" value="Connexion" class="btn btn-primary">
                 </form>
                 <br>
-                <h4>You don't have an account ? </h4> <a href="register.php">Click here</a>
+                <h4>Vous n'avez pas de compte ?</h4> <a href="register.php">Cliquez ici</a>
             </div>
         </center>
     </div>

@@ -8,35 +8,38 @@
 ?>
 
 <style>
-    body {
-        overflow-y: scroll;
-    }
+body {
+    overflow-y: scroll;
+}
 
-    .card-link:hover {
-        text-decoration: underline;
-    }
+.card-link:hover {
+    text-decoration: underline;
+}
 </style>
 
 <main role="main" class="flex-shrink-0">
     <div class="container-fluid">
         <center>
-            <h2>Voir les données par :</h2>
+            <h1 style="color:#17A589;">Bienvenue sur GeoWorld</h1>
+            <h6><em>Communiquées par l'institut Official Statistics of Finland (2006), consulter les données
+                    géopolitiques et économiques de la planète. </em></h6>
+            <br>
+            <h3>Observez les données par :</h3>
             <?php
             if (isset($_REQUEST["data"]))
             {
                 switch ($_REQUEST["data"])
                 {
                     case "continent":
-                      echo "<h3>Continent</h3>";
+                      echo "<h4>Continent</h4>";
                     break;
                     
                     case "langues":
-                      echo "<h3>Langues parlées</h3>";
+                      echo "<h4>Langues parlées</h4>";
                     break;
                 }
             }
             ?>
-            <br>
             <!-- La façon dont on veut voir les données -->
             <select class="form-control col-md-3" onchange="location = this.value">
                 <option value="">Sélectionner...</option>
@@ -44,10 +47,10 @@
                 <option value="index.php?data=langues">Langues parlées</option>
             </select>
         </center>
-    <div class="container">
-    <br>
-        <div class="row">
-            <?php
+        <div class="container">
+            <br>
+            <div class="row">
+                <?php
             if (isset($_REQUEST["data"]))
             {
                 switch ($_REQUEST["data"])
@@ -66,16 +69,16 @@
                             $nbPays = toCount($pays);
                             $link = "view_countries.php?continent=$continent";
                         ?>
-                            <div class="col-sm-4">
-                                <div class="card" style="width: 20rem; margin: 10px;">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><?php echo $continent ?></h5>
-                                        <h5><small><?php echo $nbPays ?> pays</small></h5>
-                                        <a href="<?php echo $link ?>" class="card-link">Voir les pays</a>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php
+                <div class="col-sm-4">
+                    <div class="card" style="width: 20rem; margin: 10px;">
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo $continent ?></h5>
+                            <h5><small><?php echo $nbPays ?> pays</small></h5>
+                            <a href="<?php echo $link ?>" class="card-link">Voir les pays</a>
+                        </div>
+                    </div>
+                </div>
+                <?php
                         }
                     break;
                     
@@ -96,24 +99,24 @@
                             $nbPays = toCount($pays);
                             $link = "view_countries.php?langue=$idLangue";
                         ?>
-                            <div class="col-sm-4">
-                                <div class="card" style="width: 20rem; margin: 10px;">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><?php echo $langue ?></h5>
-                                        <h5><small><?php echo $nbPays ?> pays</small></h5>
-                                        <a href="<?php echo $link ?>" class="card-link">Voir les pays</a>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php
+                <div class="col-sm-4">
+                    <div class="card" style="width: 20rem; margin: 10px;">
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo $langue ?></h5>
+                            <h5><small><?php echo $nbPays ?> pays</small></h5>
+                            <a href="<?php echo $link ?>" class="card-link">Voir les pays</a>
+                        </div>
+                    </div>
+                </div>
+                <?php
                         }
                     break;
                 }
             }
             ?>
+            </div>
         </div>
     </div>
-  </div> 
 </main>
 
 <?php

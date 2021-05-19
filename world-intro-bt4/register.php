@@ -44,70 +44,85 @@
                         header('refresh:2; url=login.php');
 
                     } 
+                    //Liste de tous les messages d'erreurs
                     else {
-                        $erreurMessage = "Your password isn't valid. Try again !";
+                        $erreurMessage = "Votre mot de passe n'est pas correct. Réessayez!";
                     }
 
                 } else {
-                    $erreurMessage = "";
+                    $erreurMessage = "Précisez qui êtes-vous.";
                 }
 
             } else {
-                $erreurMessage = "Your mail isn't valid. Try again";
+                $erreurMessage = "Votre adresse mail n'est pas valide. Réessayez!";
             }
         } else {
-            $erreurMessage = "Please complete all fields !";
+            $erreurMessage = "Complétez tous les champs.";
         }
         
     }
 ?>
 <!-- Formulaire d'inscription -->
+
 <body>
     <div class="container">
         <center>
             <div class="jumbotron">
-                <h1>Register</h1>
+                <h1>Inscription</h1>
                 <br>
                 <h2>
                     <?php
+                        //Afficher le message d'erreur
                         if(isset($erreurMessage))
                         {
                             echo '<p>' . $erreurMessage . '</p>';
                         }
                     ?>
                 </h2>
-
+                <!-- Formulaire -->
                 <form method="post">
+
+                    <!-- Nom / Prénom -->
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <input type="text" class="form-control" name="nom" placeholder="Your last name" />
+                            <input type="text" class="form-control" name="nom" placeholder="Nom de famille" required />
                         </div>
                         <div class="form-group col-md-6">
-                            <input type="text" class="form-control" name="prenom" placeholder="Your first name" />
+                            <input type="text" class="form-control" name="prenom" placeholder="Prénom" required />
                         </div>
                     </div>
+
+                    <!-- Adresse mail -->
                     <div class="form-group">
-                        <input type="email" class="form-control" name="email" placeholder="Your E-Mail">
+                        <input type="email" class="form-control" name="email" placeholder="Adresse mail" required>
                     </div>
-                    <h3>Who are you ?</h3>
+
+                    <!-- Identifier quel type de personne qui s'inscrit (un professeur ou un élève) -->
+                    <h4>Qui êtes-vous ?</h4>
                     <div class="form-check">
                         <input type="radio" class="form-check-input" name="categorie" value="2">
-                        <label for="etudiant">Student</label><br>
+                        <label for="etudiant">Etudiant</label><br>
                     </div>
                     <div class="form-check">
                         <input type="radio" class="form-check-input" name="categorie" value="3">
-                        <label for="professeur">Professor</label><br><br>
+                        <label for="professeur">Professeur</label><br><br>
                     </div>
+
+                    <!-- Mot de passe -->
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <input type="password" class="form-control" name="mdp" placeholder="Enter your password" />
+                            <input type="password" class="form-control" name="mdp" placeholder="Mot de passe"
+                                required />
                         </div>
                         <div class="form-group col-md-6">
-                            <input type="password" class="form-control" name="mdp_confirm" placeholder="Confirm your password" />
+                            <input type="password" class="form-control" name="mdp_confirm"
+                                placeholder="Confirmer le mot de passe" required />
                         </div>
                     </div>
                     <br>
-                    <input type="submit" name="submit" value="Validate" class="btn btn-primary">
+
+                    <!-- Bouton pour valider le formulaire -->
+                    <input type="submit" name="submit" value="Valider" class="btn btn-primary">
                 </form>
             </div>
         </center>
