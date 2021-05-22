@@ -120,22 +120,33 @@ body {
                     // Voir les données par villes
                     case "villes":
                         // Obtenir la liste des villes
-                        $villes = "SELECT *  FROM city ORDER BY name";
+                        $villes = "SELECT *  FROM city ORDER BY name LIMIT 249";
                         $requete = toFetch($villes);
                         // Afficher la liste des villes
                         while ($response = $requete->fetch())
                         {
+                            // Les informations de la ville
                             $nom = $response["Name"];
                             $district = $response["District"];
                             $population = $response["Population"];
                             $idPays = $response["idCountry"];
+
+                            // Obtenir le pays de la ville
+                            $paysQuery = requete("SELECT Name AS result FROM country WHERE id = '$idPays'");
+                            $pays = $paysQuery["result"];
                         ?>
                 <div class="col-sm-4">
                     <div class="card" style="width: 20rem; margin: 10px;">
                         <div class="card-body">
+                            <style>
+                                .link {
+                                    color: #000;
+                                }
+                            </style>
                             <h5 class="card-title"><?php echo $nom ?></h5>
-                            <h6>District : <?php echo $district ?></h6>
-                            <h5><small> Population :<?php echo $population ?></small></h5>
+                            <h6>Country : <a href="#" class="link"><?php echo $pays ?></a></h6>
+                            <h6>District : <a href="#" class="link"><?php echo $district ?></a></h6>
+                            <h5><small> Population : <?php echo $population ?></small></h5>
                         </div>
                     </div>
                 </div>
