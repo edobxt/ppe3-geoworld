@@ -49,7 +49,7 @@ body {
                 <option value="">Sélectionner...</option>
                 <option value="index.php?data=continent">Continent</option>
                 <option value="index.php?data=langues">Langues parlées</option>
-                <option value="index.php?data=villes">Villes</option>
+                <option value="index.php?data=villes&page=1">Villes</option>
             </select>
         </center>
         <div class="container">
@@ -119,8 +119,19 @@ body {
 
                     // Voir les données par villes
                     case "villes":
+                        // Récupérer le numéro de la page
+                        if (isset($_REQUEST["page"]))
+                        {
+                            $page = $_REQUEST["page"];
+                        }
+                        // Obtenir les limites en fonction de la page
+                        $next = 249 * $page;
+                        
                         // Obtenir la liste des villes
-                        $villes = "SELECT *  FROM city ORDER BY name LIMIT 249";
+                        $villes = "SELECT *  FROM city ORDER BY name LIMIT 249 OFFSET $next";
+                        //echo $villes . "\n";
+                        $nbResult = toCount($villes);
+                        //echo $nbResult;
                         $requete = toFetch($villes);
                         // Afficher la liste des villes
                         while ($response = $requete->fetch())
@@ -135,14 +146,20 @@ body {
                             $paysQuery = requete("SELECT Name AS result FROM country WHERE id = '$idPays'");
                             $pays = $paysQuery["result"];
                         ?>
+                        <style>
+                            .link {
+                                color: #000;
+                            }
+
+                            .page {
+                                margin: 0 auto;
+                                margin-top: 30px;
+                            }
+                        </style>
                 <div class="col-sm-4">
                     <div class="card" style="width: 20rem; margin: 10px;">
                         <div class="card-body">
-                            <style>
-                                .link {
-                                    color: #000;
-                                }
-                            </style>
+                            
                             <h5 class="card-title"><?php echo $nom ?></h5>
                             <h6>Country : <a href="#" class="link"><?php echo $pays ?></a></h6>
                             <h6>District : <a href="#" class="link"><?php echo $district ?></a></h6>
@@ -152,6 +169,22 @@ body {
                 </div>
                 <?php
                         }
+                        ?>
+                        <br>
+                        <div class="page">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination">
+                                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                                <?php for ($i = 1; $i < 17; $i++) { ?>
+                                    <li class="page-item <?php if ($page == $i) { echo "active"; } ?>">
+                                        <a class="page-link" href="index.php?data=villes&page=<?php echo $i ?>"><?php echo $i ?></a>
+                                    </li>
+                                <?php } ?>
+                                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <?php
                     break;
                 }
             }
