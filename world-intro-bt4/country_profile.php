@@ -45,39 +45,35 @@
                 unset($colonnesPays[0]);
                 unset($colonnesPays[15]); 
                 foreach ($colonnesPays as $colonne) {
-                    // On va gérer la capital dans un second temps
-                    if (!($colonne == "Capital")) {
-                ?>
-                    
-                    <div class="col-sm-4">
-                        <div class="card" style="width: 20rem; margin: 10px;">
-                            <div class="card-body">
-                                <h5 class="card-title"><?php echo $colonne ?></h5>
-                                <h5><small><?php echo $infoPays["$colonne"] ?></small></h5>
-                            </div>
-                        </div>
-                    </div>
-                <?php 
-                    } 
-                    // Si on veut afficher la capitale
-                    if ($colonne == "Capital") {
                 ?>
                     <div class="col-sm-4">
                         <div class="card" style="width: 20rem; margin: 10px;">
                             <div class="card-body">
                                 <h5 class="card-title"><?php echo $colonne ?></h5>
-                                <?php 
-                                // Récupérer la capital du pays
-                                $idCapital = $infoPays["Capital"];
-                                $capital = requete("SELECT Name FROM city WHERE id = $idCapital");
+                                <?php
+                                // Switch en fonction de l'information à ajouter
+                                switch ($colonne) {
+                                    // Affichage par défaut
+                                    default:
+                                    ?>
+                                        <h5><small><?php echo $infoPays["$colonne"] ?></small></h5>
+                                    <?php
+                                    break;
+                                    
+                                    case "Capital":
+                                        // Récupérer la capital du pays
+                                        $idCapital = $infoPays["Capital"];
+                                        $capital = requete("SELECT Name FROM city WHERE id = $idCapital");
+                                    ?>
+                                        <h5><small><?php echo $capital["Name"] ?></small></h5>
+                                    <?php
+                                    break;
+                                }
                                 ?>
-                                <h5><small><?php echo $capital["Name"] ?></small></h5>
                             </div>
                         </div>
                     </div>
-
                 <?php
-                    }
                 } 
                 ?>
             </div>
