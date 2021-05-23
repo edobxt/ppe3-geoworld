@@ -102,14 +102,14 @@ function toCount($requete)
 }
 
 /**
- * Fonction permetttant de récupérer toutes les colonnes d'une table de la base de données
+ * Fonction retournant un tableau ldes colonnes d'une table de la base de données
  */
 function getAllColumns($requete)
 {
     global $pdo;
 
     // Découper la requête à partir de FROM
-    $part1 = explode("FROM", $pays);
+    $part1 = explode("FROM", $requete);
     // Découper encore la requête afin d'obtenir le nom de la table
     $part2 = explode(" ", $part1["1"]);
     // Récupérer le nom de la table

@@ -17,15 +17,8 @@
     $infoPays = requete($pays);
     
     // Récupérer les colonnes de la table pays
-    $q = $pdo->prepare("DESCRIBE country");
-    $q->execute();
-    $table_fields = $q->fetchAll(PDO::FETCH_COLUMN);
-    //var_dump($table_fields);
-
-    $def = explode("FROM", $pays);
-    //var_dump($def);
-    $defe = explode(" ", $def["1"]);
-    var_dump($defe);
+    $colonnesPays = getAllColumns($pays);
+    //var_dump($colonnesPays);
 ?>
 
 <style>
@@ -46,7 +39,48 @@
         </center>
         <br>
         <div class="container">
-            
+            <div class="row">
+                <?php 
+                // Supprimer les éléments indésirables du tableau
+                unset($colonnesPays[0]);
+                unset($colonnesPays[15]); 
+                foreach ($colonnesPays as $colonne) {
+                    // On va gérer la capital dans un second temps
+                    if (!($colonne == "Capital")) {
+                ?>
+                    
+                    <div class="col-sm-4">
+                        <div class="card" style="width: 20rem; margin: 10px;">
+                            <div class="card-body">
+                                <h5 class="card-title"><?php echo $colonne ?></h5>
+                                <h5><small><?php echo $infoPays["$colonne"] ?></small></h5>
+                            </div>
+                        </div>
+                    </div>
+                <?php 
+                    } 
+                    // Si on veut afficher la capitale
+                    if ($colonne == "Capital") {
+                ?>
+                    <div class="col-sm-4">
+                        <div class="card" style="width: 20rem; margin: 10px;">
+                            <div class="card-body">
+                                <h5 class="card-title"><?php echo $colonne ?></h5>
+                                <?php 
+                                // Récupérer la capital du pays
+                                $idCapital = $infoPays["Capital"];
+                                $capital = requete("SELECT Name FROM city WHERE id = $idCapital");
+                                ?>
+                                <h5><small><?php echo $capital["Name"] ?></small></h5>
+                            </div>
+                        </div>
+                    </div>
+
+                <?php
+                    }
+                } 
+                ?>
+            </div>
         </div>
         
     </div>
