@@ -100,4 +100,26 @@ function toCount($requete)
     $nb_result = $Myresult->rowCount();
     return $nb_result;
 }
+
+/**
+ * Fonction retournant un tableau ldes colonnes d'une table de la base de données
+ */
+function getAllColumns($requete)
+{
+    global $pdo;
+
+    // Découper la requête à partir de FROM
+    $part1 = explode("FROM", $requete);
+    // Découper encore la requête afin d'obtenir le nom de la table
+    $part2 = explode(" ", $part1["1"]);
+    // Récupérer le nom de la table
+    $table = $part2["1"];
+
+    // Récupérer les colonnes de la table
+    $q = $pdo->prepare("DESCRIBE $table");
+    $q->execute();
+    $table_fields = $q->fetchAll(PDO::FETCH_COLUMN);
+
+    return $table_fields;
+}
 ?>
