@@ -146,7 +146,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title"><?php echo $nomPays . $officiel ?></h5>
                                     <h5><small><?php echo $pourcentage ?>% de la population</small></h5>
-                                    <a href="<?php echo 3 ?>" class="card-link">Voir plus</a>
+                                    <a href="<?php echo "country_profile.php?idCountry=$idPays" ?>" class="card-link">Voir plus</a>
                                 </div>
                             </div>
                         </div>

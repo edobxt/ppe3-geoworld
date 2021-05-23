@@ -163,7 +163,8 @@
                                     <div class="card" style="width: 20rem; margin: 10px;">
                                         <div class="card-body">
                                             <h5 class="card-title"><?php echo $nom ?></h5>
-                                            <h6>Country : <a href="#" class="link"><?php echo $pays ?></a></h6>
+                                            <h6>Country : <a href="country_profile.php?idCountry=<?php echo $idPays ?>" class="link" target="_blank">
+                                                <?php echo $pays ?></a></h6>
                                             <h6>District : <a href="#" class="link"><?php echo $district ?></a></h6>
                                             <h5><small> Population : <?php echo $population ?></small></h5>
                                         </div>
