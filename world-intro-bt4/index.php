@@ -176,13 +176,18 @@
                                 <div class="page">
                                     <nav aria-label="Page navigation example">
                                         <ul class="pagination">
-                                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                                        <?php for ($i = 1; $i < 17; $i++) { ?>
+                                        <?php 
+                                        if ($page > 1) {  ?>
+                                            <li class="page-item"><a class="page-link" href="index.php?data=ville&page=<?php echo $page - 1 ?>">Previous</a></li>
+                                        <?php } 
+                                        for ($i = 1; $i < 17; $i++) { ?>
                                             <li class="page-item <?php if ($page == $i) { echo "active"; } ?>">
                                                 <a class="page-link" href="index.php?data=villes&page=<?php echo $i ?>"><?php echo $i ?></a>
                                             </li>
+                                        <?php } 
+                                        if ($page < 16) {?>
+                                        <li class="page-item"><a class="page-link" href="index.php?data=ville&page=<?php echo $page + 1 ?>">Next</a></li>
                                         <?php } ?>
-                                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
                                         </ul>
                                     </nav>
                                 </div>
