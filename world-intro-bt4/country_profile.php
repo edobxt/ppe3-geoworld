@@ -55,8 +55,9 @@
                                 switch ($colonne) {
                                     // Affichage par défaut
                                     default:
+                                        $info = isset($infoPays["$colonne"]) ? $infoPays["$colonne"] : "N/A";                                        
                                     ?>
-                                        <h5><small><?php echo $infoPays["$colonne"] ?></small></h5>
+                                        <h5><small><?php echo $info ?></small></h5>
                                     <?php
                                     break;
                                     
