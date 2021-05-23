@@ -35,7 +35,7 @@
             $codePaysImage = strtolower($infoPays["Code2"]);
             ?>
             <img src="images/drapeau/<?php echo $codePaysImage ?>.jpg" alt="imagePays">-->
-            <h1><?php echo $infoPays["Name"] ?></h1>
+            <h1>Infos of <?php echo $infoPays["Name"] ?></h1>
         </center>
         <br>
         <div class="container">
