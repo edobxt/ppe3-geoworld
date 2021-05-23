@@ -178,7 +178,7 @@
                                         <ul class="pagination">
                                         <?php 
                                         if ($page > 1) {  ?>
-                                            <li class="page-item"><a class="page-link" href="index.php?data=ville&page=<?php echo $page - 1 ?>">Previous</a></li>
+                                            <li class="page-item"><a class="page-link" href="index.php?data=villes&page=<?php echo $page - 1 ?>">Previous</a></li>
                                         <?php } 
                                         for ($i = 1; $i < 17; $i++) { ?>
                                             <li class="page-item <?php if ($page == $i) { echo "active"; } ?>">
@@ -186,7 +186,7 @@
                                             </li>
                                         <?php } 
                                         if ($page < 16) {?>
-                                        <li class="page-item"><a class="page-link" href="index.php?data=ville&page=<?php echo $page + 1 ?>">Next</a></li>
+                                        <li class="page-item"><a class="page-link" href="index.php?data=villes&page=<?php echo $page + 1 ?>">Next</a></li>
                                         <?php } ?>
                                         </ul>
                                     </nav>
