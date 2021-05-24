@@ -205,11 +205,20 @@
                                 // Récupérer les pays
                                 $requete = toFetch("SELECT * FROM country ORDER BY Name ASC");
                                 while ($response = $requete->fetch()) {
+                                    // Récupérer la capital
+                                    $idCapital = $response["Capital"];
+                                    $capital = requete("SELECT Name FROM city WHERE id = $idCapital");
+                                    //echo "SELECT Name FROM city WHERE id = $idCapital";
+
+                                    // Récupérer le chef de l'état
+                                    $headOfState = isset($response["HeadOfState"]) ? $response["HeadOfState"] : "N/A";
                             ?>
                                 <div class="col-sm-4">
                                     <div class="card" style="width: 20rem; margin: 10px;">
                                         <div class="card-body">
                                             <h5 class="card-title"><?php echo $response["Name"] ?></h5>
+                                            <h5><small>HeadOfState : <?php echo $headOfState ?></small></h5>
+                                            <h5><small>Capital : <?php echo $capital["Name"]  ?></small></h5>
                                             <a href="country_profile.php?idCountry=<?php echo $response["id"] ?>" class="card-link" target="_blank">Plus d'infos</a>
                                         </div>
                                     </div>
