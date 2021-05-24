@@ -26,7 +26,10 @@
             $continent = $_REQUEST["continent"];
             $pays = toFetch("SELECT * FROM country WHERE continent = '$continent'");
         ?>
-            <h1>Pays en <?php echo $continent ?></h1>
+            <h1 style="float:left;">Pays en <?php echo $continent ?></h1>
+            <a href="index.php?data=continent" class="btn btn-secondary btn-lg" style="float:right;"><strong>RETOUR</strong></a>
+            <div style="clear: both;"></div>
+            
             <br>
             <table class="table table-bordered">
                 <thead class="thead-dark">
