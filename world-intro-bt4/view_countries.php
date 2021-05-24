@@ -26,7 +26,10 @@
             $continent = $_REQUEST["continent"];
             $pays = toFetch("SELECT * FROM country WHERE continent = '$continent'");
         ?>
-            <h1>Pays en <?php echo $continent ?></h1>
+            <h1 style="float:left;">Pays en <?php echo $continent ?></h1>
+            <a href="index.php?data=continent" class="btn btn-secondary btn-lg" style="float:right;"><strong>RETOUR</strong></a>
+            <div style="clear: both;"></div>
+            
             <br>
             <table class="table table-bordered">
                 <thead class="thead-dark">
@@ -110,7 +113,9 @@
             //echo $requete2;
             $pays = toFetch($requete2);
             ?>
-            <h1>Liste des pays parlant : <?php echo $langue ?></h1>
+            <h1 style="float:left;">Liste des pays parlant : <?php echo $langue ?></h1>
+            <a href="index.php?data=langues" class="btn btn-secondary btn-lg" style="float:right;"><strong>RETOUR</strong></a>
+            <div style="clear: both;"></div>
             <center>
                 <br>
                 <div class="btn-group" style="color: #fff">
