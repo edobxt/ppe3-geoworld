@@ -54,7 +54,7 @@
             ?>
             <!-- La façon dont on veut voir les données -->
             <select class="form-control col-md-3" onchange="location = this.value">
-                <option value="">Sélectionner...</option>
+                <option value="index.php">Sélectionner...</option>
                 <option value="index.php?data=continent">Continent</option>
                 <option value="index.php?data=pays">Pays</option>
                 <option value="index.php?data=langues">Langues parlées</option>

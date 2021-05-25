@@ -23,8 +23,20 @@
         // Voir les pays d'un continent
         if (isset($_REQUEST["continent"]))
         {
+            // Récupérer le continent sélectionné
             $continent = $_REQUEST["continent"];
-            $pays = toFetch("SELECT * FROM country WHERE continent = '$continent'");
+            // Récupérer la liste des pays du continent en question
+            $requete = "SELECT * FROM country WHERE continent = '$continent'";
+            $pays = toFetch($requete);
+            // Récupérer les colonnes de la table country
+            $colonnePays = getAllColumns($requete);
+            // Enlever les colonnes indésirables
+            unset($colonnePays[0]);
+            unset($colonnePays[1]);
+            unset($colonnePays[3]);
+            unset($colonnePays[14]);
+            unset($colonnePays[15]);
+
         ?>
             <h1 style="float:left;">Pays en <?php echo $continent ?></h1>
             <a href="index.php?data=continent" class="btn btn-secondary btn-lg" style="float:right;"><strong>RETOUR</strong></a>
@@ -34,42 +46,28 @@
             <table class="table table-bordered">
                 <thead class="thead-dark">
                     <tr>
-                        <th>Name</th>
-                        <th>Region</th>
-                        <th>SurfaceArea</th>
-                        <th>IndepYear</th>
-                        <th>Population</th>
-                        <th>LifeExpectancy</th>
-                        <th>GNP</th>
-                        <th>GNPOld</th>
-                        <th>LocalName</th>
-                        <th>GovernmentForm</th>
-                        <th>HeadOfState</th>
+                        <?php
+                        foreach ($colonnePays as $colonne) {
+                            echo "<th>" . $colonne . "</th>";
+                        }
+                        ?>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
-                    while ($response = $pays->fetch())
-                    {
-                    ?>
-                        <tr>
-                            <td><?php echo $response["Name"] ?></td>
-                            <td><?php echo $response["Region"] ?></td>
-                            <td><?php echo $response["SurfaceArea"] ?></td>
-                            <td><?php echo $response["IndepYear"] ?></td>
-                            <td><?php echo $response["Population"] ?></td>
-                            <td><?php echo $response["LifeExpectancy"] ?></td>
-                            <td><?php echo $response["GNP"] ?></td>
-                            <td><?php echo $response["GNPOld"] ?></td>
-                            <td><?php echo $response["LocalName"] ?></td>
-                            <td><?php echo $response["GovernmentForm"] ?></td>
-                            <td><?php echo $response["HeadOfState"] ?></td>
-                        </tr>
-                    <?php
-                    }
-                    ?>
+                        <?php
+                        while ($response = $pays->fetch())
+                        {
+                            echo "<tr>";
+                            foreach ($colonnePays as $colonne) {
+                                $info = (!empty($response[$colonne])) ? $response[$colonne] : "N/A";
+                                echo "<td>" . $info . "</td>";
+                            }
+                            echo "</tr>";
+                        }
+                        ?>
                 </tbody>
             </table>
+            
         <?php
         }
 
