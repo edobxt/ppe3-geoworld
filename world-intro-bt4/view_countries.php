@@ -31,22 +31,25 @@
             // Récupérer les colonnes de la table country
             $colonnePays = getAllColumns($requete);
             // Enlever les colonnes indésirables
-            unset($colonnePays[0]);
-            unset($colonnePays[1]);
-            unset($colonnePays[3]);
-            unset($colonnePays[14]);
-            unset($colonnePays[15]);
+            unset($colonnePays[0]); // id
+            unset($colonnePays[1]); // code
+            unset($colonnePays[3]); // continent
+            unset($colonnePays[14]); // capital
+            unset($colonnePays[15]); // Code2
 
         ?>
             <h1 style="float:left;">Pays en <?php echo $continent ?></h1>
+            <!-- Retour vers la page d'accueil -->
             <a href="index.php?data=continent" class="btn btn-secondary btn-lg" style="float:right;"><strong>RETOUR</strong></a>
             <div style="clear: both;"></div>
             
             <br>
+            <!-- Tableau listant les pays d'un continent -->
             <table class="table table-bordered">
                 <thead class="thead-dark">
                     <tr>
                         <?php
+                        // Affichage des colonnes du tableau
                         foreach ($colonnePays as $colonne) {
                             echo "<th>" . $colonne . "</th>";
                         }
@@ -55,6 +58,7 @@
                 </thead>
                 <tbody>
                         <?php
+                        // Affichage des informations du tableau
                         while ($response = $pays->fetch())
                         {
                             echo "<tr>";
@@ -112,13 +116,17 @@
             $pays = toFetch($requete2);
             ?>
             <h1 style="float:left;">Liste des pays parlant : <?php echo $langue ?></h1>
+            <!-- Retour vers la page d'accueil -->
             <a href="index.php?data=langues" class="btn btn-secondary btn-lg" style="float:right;"><strong>RETOUR</strong></a>
             <div style="clear: both;"></div>
             <center>
                 <br>
                 <div class="btn-group" style="color: #fff">
+                    <!-- Tous les pays parlant la langue -->
                     <a href="view_countries.php?langue=<?php echo $idLangue ?>&isOfficial=any" type="button" class="btn btn-primary btn-lg">Tous</a>
+                    <!-- Pays dont c'est la langue officielle -->
                     <a href="view_countries.php?langue=<?php echo $idLangue ?>&isOfficial=true" type="button" class="btn btn-info btn-lg">Officielle</a>
+                    <!-- Pays dont ce n'est pas la langue officielle -->
                     <a href="view_countries.php?langue=<?php echo $idLangue ?>&isOfficial=false" type="button" class="btn btn-secondary btn-lg">Non-officielle</a>
                 </div>
             </center>
@@ -147,8 +155,11 @@
                         <div class="col-sm-4">
                             <div class="card" style="width: 20rem; margin: 10px;">
                                 <div class="card-body">
+                                    <!-- Nom du pays parlant la langue -->
                                     <h5 class="card-title"><?php echo $nomPays . $officiel ?></h5>
+                                    <!-- Pourcentage de la population parlant la langue -->
                                     <h5><small><?php echo $pourcentage ?>% de la population</small></h5>
+                                    <!-- Lien vers la fiche du pays parlant la langue -->
                                     <a href="<?php echo "country_profile.php?idCountry=$idPays" ?>" class="card-link">Voir plus</a>
                                 </div>
                             </div>
@@ -158,7 +169,6 @@
                     ?>
                 </div>
             </div>
-            
             <?php
         }
         ?>
