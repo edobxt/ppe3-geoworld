@@ -67,6 +67,7 @@
                 <?php
                     if (isset($_REQUEST["data"]))
                     {
+                        // Switch sur la façon dont l'on veut voir les données
                         switch ($_REQUEST["data"])
                         {
                             // Voir les données par continents
@@ -81,13 +82,17 @@
                                     // Obtenir le nombre de pays dans ce continent
                                     $pays = "SELECT * FROM country WHERE continent = '$continent'";
                                     $nbPays = toCount($pays);
+                                    // Définir le lien vers la liste des pays situés dans ce continent
                                     $link = "view_countries.php?continent=$continent";
                                 ?>
                                     <div class="col-sm-4">
                                         <div class="card" style="width: 20rem; margin: 10px;">
                                             <div class="card-body">
+                                                <!-- Nom du continent -->
                                                 <h5 class="card-title"><?php echo $continent ?></h5>
+                                                <!-- Nombre de pays situés dans ce continent -->
                                                 <h5><small><?php echo $nbPays ?> pays</small></h5>
+                                                <!-- Lien vers la liste des pays situés dans ce continent -->
                                                 <a href="<?php echo $link ?>" class="card-link">Voir les pays</a>
                                             </div>
                                         </div>
@@ -111,13 +116,17 @@
                                     // Obtenir le nombre de pays où la langue est parlée
                                     $pays = "SELECT idCountry FROM countrylanguage WHERE idLanguage = $idLangue";
                                     $nbPays = toCount($pays);
+                                    // Définir le lien vers la liste des pays où la langue est parlée
                                     $link = "view_countries.php?langue=$idLangue";
                                 ?>
                                 <div class="col-sm-4">
                                     <div class="card" style="width: 20rem; margin: 10px;">
                                         <div class="card-body">
+                                            <!-- Nom de la langue -->
                                             <h5 class="card-title"><?php echo $langue ?></h5>
+                                            <!-- Nombre de pays parlant la langue -->
                                             <h5><small><?php echo $nbPays ?> pays</small></h5>
+                                            <!-- Lien vers la liste des pays parlant la langue -->
                                             <a href="<?php echo $link ?>" class="card-link">Voir les pays</a>
                                         </div>
                                     </div>
@@ -167,10 +176,14 @@
                                 <div class="col-sm-4">
                                     <div class="card" style="width: 20rem; margin: 10px;">
                                         <div class="card-body">
+                                            <!-- Nom de la ville -->
                                             <h5 class="card-title"><?php echo $nom ?></h5>
+                                            <!-- Lien vers le pays où la ville est situé -->
                                             <h6>Country : <a href="country_profile.php?idCountry=<?php echo $idPays ?>" class="link" target="_blank">
                                                 <?php echo $pays ?></a></h6>
+                                            <!-- District de la ville -->
                                             <h6>District : <a href="#" class="link"><?php echo $district ?></a></h6>
+                                            <!-- Nombre d'habitant de la ville -->
                                             <h5><small> Population : <?php echo $population ?></small></h5>
                                         </div>
                                     </div>
@@ -179,11 +192,12 @@
                                 }
                                 ?>
                                 <br>
+                                <!-- Pagination de la vue par ville -->
                                 <div class="page">
-                                    <nav aria-label="Page navigation example">
+                                    <nav aria-label="Page navigation">
                                         <ul class="pagination">
                                         <?php 
-                                        if ($page > 1) {  ?>
+                                        if ($page > 1) { ?>
                                             <li class="page-item"><a class="page-link" href="index.php?data=villes&page=<?php echo $page - 1 ?>">Previous</a></li>
                                         <?php } 
                                         for ($i = 1; $i < 17; $i++) { ?>
@@ -191,7 +205,7 @@
                                                 <a class="page-link" href="index.php?data=villes&page=<?php echo $i ?>"><?php echo $i ?></a>
                                             </li>
                                         <?php } 
-                                        if ($page < 16) {?>
+                                        if ($page < 16) { ?>
                                         <li class="page-item"><a class="page-link" href="index.php?data=villes&page=<?php echo $page + 1 ?>">Next</a></li>
                                         <?php } ?>
                                         </ul>
@@ -204,7 +218,8 @@
                             case "pays":
                                 // Récupérer les pays
                                 $requete = toFetch("SELECT * FROM country ORDER BY Name ASC");
-                                while ($response = $requete->fetch()) {
+                                while ($response = $requete->fetch()) 
+                                {
                                     // Récupérer la capital
                                     $idCapital = $response["Capital"];
                                     if (!is_null($idCapital)) 
@@ -218,18 +233,22 @@
 
                                     // Récupérer le chef de l'état
                                     $headOfState = (!empty($response["HeadOfState"])) ? $response["HeadOfState"] : "N/A";
-                            ?>
+                                ?>
                                 <div class="col-sm-4">
                                     <div class="card" style="width: 20rem; margin: 10px;">
                                         <div class="card-body">
+                                            <!-- Afficher le nom du pays -->
                                             <h5 class="card-title"><?php echo $response["Name"] ?></h5>
+                                            <!-- Afficher le chef de l'état du pays -->
                                             <h5><small>HeadOfState : <?php echo $headOfState ?></small></h5>
+                                            <!-- Afficher la capital du pays -->
                                             <h5><small>Capital : <?php echo $capital ?></small></h5>
+                                            <!-- Lien vers la fiche du pays -->
                                             <a href="country_profile.php?idCountry=<?php echo $response["id"] ?>" class="card-link" target="_blank">Plus d'infos</a>
                                         </div>
                                     </div>
                                 </div>
-                            <?php
+                                <?php
                                 }
                             break;
                         }

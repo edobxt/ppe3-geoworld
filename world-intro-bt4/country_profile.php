@@ -42,8 +42,9 @@
             <div class="row">
                 <?php 
                 // Supprimer les éléments indésirables du tableau
-                unset($colonnesPays[0]);
-                unset($colonnesPays[15]); 
+                unset($colonnesPays[0]); // id
+                unset($colonnesPays[15]); // Code2
+                // Affichage des informations du pays
                 foreach ($colonnesPays as $colonne) {
                 ?>
                     <div class="col-sm-4">
@@ -60,7 +61,7 @@
                                         <h5><small><?php echo $info ?></small></h5>
                                     <?php
                                     break;
-                                    
+                                    // Dans le cas de l'affichage de la capital
                                     case "Capital":
                                         // Récupérer la capital du pays
                                         $idCapital = $infoPays["Capital"];
