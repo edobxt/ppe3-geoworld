@@ -167,6 +167,9 @@
                                     .link {
                                         color: #000;
                                     }
+                                    .link:hover {
+                                        color: #17A589;
+                                    }
                                 
                                     .page {
                                         margin: 0 auto;
