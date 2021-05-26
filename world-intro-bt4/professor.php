@@ -1,15 +1,16 @@
 <?php  
   // Ajout du header
-  header_page(1);
+  require_once 'header.php';
   // Lien vers les méthodes
   require_once 'inc/connect-db_users.php';
-  // Initialisation de la session
-  session_start();
-  
+  /*
   if (isset($_REQUEST["idUsers"]))
   {
     $idUsers = $_REQUEST["idUsers"];
   }
+  */
+  //var_dump($_SESSION);
+
 ?>
 
 <main role="main" class="flex-shrink-0">

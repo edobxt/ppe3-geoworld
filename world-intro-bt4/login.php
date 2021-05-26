@@ -51,11 +51,11 @@
                     {
                         if($_SESSION['idCategories'] == 2)
                         {
-                            header('refresh:2; url=student.php?idUsers='.$idUsers);
+                            header("Location: student.php");
                         }
                         else
                         {
-                            header('refresh:2; url=professor.php?idUsers='.$idUsers);
+                            header("Location: professor.php");
                         }
                     }
                 }

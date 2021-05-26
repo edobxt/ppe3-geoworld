@@ -1,11 +1,10 @@
 <?php  
   // Ajout du header
-  header_page(1);
+  require_once 'header.php';
   // Lien vers les méthodes
   require_once 'inc/connect-db.php';
   require_once 'inc/manager-db.php';
   // Initialisation de la session
-  session_start();
   
   if (isset($_SESSION["idUsers"]))
   {
