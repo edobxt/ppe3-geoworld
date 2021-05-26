@@ -1,3 +1,15 @@
+<?php 
+    session_start();
+    // Lien vers les méthodes
+    require_once 'inc/manager-db.php';
+    // Initialisation de la session
+
+    // Récupération de la catégorie de l'utilisateur connecté
+    if (isset($_SESSION['idCategories']))
+    {
+        $idCategorie = $_SESSION['idCategories'];
+    }
+?>
 <!doctype html>
 <html lang="fr" class="h-100">
 
@@ -41,21 +53,6 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="index.php">Accueil <span class="sr-only">(current)</span></a>
                     </li>
-                    <!--
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false" name="Dropdown">Dropdown</a>
-                        <div class="dropdown-menu" aria-labelledby="dropdown01">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </li>
-                    -->
                     <li class="nav-item">
                         <a class="nav-link " href="todo-projet.php">
                             ProjetPPE-SLAM
@@ -63,14 +60,27 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="register.php">Inscription</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="login.php"><i class="bi bi-person-circle"></i></a>
-                    </li>
-
+                    <?php
+                    if (isset($_SESSION["idUsers"]))
+                    {
+                    ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="logout.php">
+                                <i class="bi bi-box-arrow-right" style="font-size:16px; color:#fff;"></i>
+                            </a>
+                        </li>
+                    <?php
+                    } else {
+                    ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="register.php">Inscription</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="login.php"><i class="bi bi-person-circle"></i></a>
+                        </li>
+                    <?php
+                    }
+                    ?>
                 </ul>
             </div>
         </nav>

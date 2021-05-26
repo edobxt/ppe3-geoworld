@@ -4,7 +4,6 @@
     // Lien vers les méthodes
     require_once 'inc/manager-db.php';
     // Initialisation de la session
-    session_start(); 
 ?>
 
 <style>
