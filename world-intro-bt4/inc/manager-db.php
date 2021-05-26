@@ -122,4 +122,117 @@ function getAllColumns($requete)
 
     return $table_fields;
 }
+
+/**
+ * Fonction retournant un header dynamique en fonction de la page
+ */
+function header_page()
+{
+    // Récupérer l'url complet de la page
+    $url = $_SERVER['REQUEST_URI'];
+    // Séparer l'url à partir de /
+    $urlPart = explode("/", $url);
+    // Récupérer le nom de la page + les paramètres
+    $nomPageComplet = $urlPart[3];
+    // Séparer à partir de .
+    $nomPageCompletPart = explode(".", $nomPageComplet);
+    // Obtenir uniquement le nom de la page
+    $nomPage = $nomPageCompletPart[0];
+
+    // Affichage de l'header en fonction du nom de la page
+    switch ($nomPage)
+    {
+        // Affichage par défaut
+        default:
+        ?>
+            <li class="nav-item">
+                <a class="nav-link" href="index.php">Accueil</a>
+            </li>
+            <?php
+            // Si l'utilisateur est connecté
+            if (isset($_SESSION['idUsers']))
+            {
+                // Si l'utilisateur est un professeur
+                if ($_SESSION['idCategories'] == 3)
+                {
+                ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="professor.php">Teacher's area</a>
+                    </li>
+                <?php
+                }
+                
+                // Si l'utilisateur est un élève
+                if ($_SESSION['idCategories'] == 2)
+                {
+                ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="student.php">Student's area</a>
+                    </li>
+                <?php
+                }
+            }
+            ?>
+        <?php
+        break;
+
+        // Affichage à partir de la page d'accueil
+        case "index":
+        ?>
+            <li class="nav-item active">
+                <a class="nav-link" href="index.php">Accueil</a>
+            </li>
+            <?php
+            // Si l'utilisateur est connecté
+            if (isset($_SESSION['idUsers']))
+            {
+                // Si l'utilisateur est un professeur
+                if ($_SESSION['idCategories'] == 3)
+                {
+                ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="professor.php">Teacher's area</a>
+                    </li>
+                <?php
+                }
+                
+                // Si l'utilisateur est un élève
+                if ($_SESSION['idCategories'] == 2)
+                {
+                ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="student.php">Student's area</a> 
+                    </li>
+                <?php
+                }
+            }
+            ?>
+        <?php
+        break;
+
+        // Affichage à partir de la partie professeur
+        case "professor":
+        ?>
+            <li class="nav-item">
+                <a class="nav-link" href="index.php">Accueil</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="professor.php">Teacher's area</a>
+            </li>
+        <?php
+        break;
+
+        // Affichage à partir de la partie élève
+        case "student":
+        ?>
+            <li class="nav-item">
+                <a class="nav-link" href="index.php">Accueil</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="student.php">Student's area</a>
+            </li>
+        <?php
+        break;
+    }
+}
 ?>
