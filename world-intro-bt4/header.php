@@ -50,9 +50,12 @@
 
             <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="index.php">Accueil <span class="sr-only">(current)</span></a>
-                    </li>
+                    <!--<li class="nav-item active">
+                        <a class="nav-link" href="index.php">Accueil</a>
+                    </li>-->
+                    <?php 
+                    header_page();
+                    ?>
                     <li class="nav-item">
                         <a class="nav-link " href="todo-projet.php">
                             ProjetPPE-SLAM
