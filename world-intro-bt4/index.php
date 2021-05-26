@@ -20,15 +20,15 @@
 <main role="main" class="flex-shrink-0">
     <div class="container-fluid">
         <center>
-            <h1 style="color:#17A589;">Bienvenue sur GeoWorld</h1>
+            <h1 style="color:#17A589;">Welcome to GeoWorld</h1>
             <h6>
                 <em>
-                    Communiquées par l'institut Official Statistics of Finland (2006), consulter les données
-                    géopolitiques et économiques de la planète. 
+                    Communicated by the Official Statistics of Finland (2006), 
+                    consult the geopolitical and economic data of the planet.
                 </em>
             </h6>
             <br>
-            <h3>Observez les données par :</h3>
+            <h3>Observe the data by :</h3>
             <?php
                 if (isset($_REQUEST["data"]))
                 {
@@ -54,11 +54,11 @@
             ?>
             <!-- La façon dont on veut voir les données -->
             <select class="form-control col-md-3" onchange="location = this.value">
-                <option value="index.php">Sélectionner...</option>
+                <option value="index.php">Select...</option>
                 <option value="index.php?data=continent">Continent</option>
-                <option value="index.php?data=pays">Pays</option>
-                <option value="index.php?data=langues">Langues parlées</option>
-                <option value="index.php?data=villes&page=1">Villes</option>
+                <option value="index.php?data=pays">Countries</option>
+                <option value="index.php?data=langues">Languages</option>
+                <option value="index.php?data=villes&page=1">Cities</option>
             </select>
         </center>
         <div class="container">
@@ -91,9 +91,9 @@
                                                 <!-- Nom du continent -->
                                                 <h5 class="card-title"><?php echo $continent ?></h5>
                                                 <!-- Nombre de pays situés dans ce continent -->
-                                                <h5><small><?php echo $nbPays ?> pays</small></h5>
+                                                <h5><small><?php echo $nbPays ?> countries</small></h5>
                                                 <!-- Lien vers la liste des pays situés dans ce continent -->
-                                                <a href="<?php echo $link ?>" class="card-link">Voir les pays</a>
+                                                <a href="<?php echo $link ?>" class="card-link">See countries</a>
                                             </div>
                                         </div>
                                     </div>
@@ -116,6 +116,7 @@
                                     // Obtenir le nombre de pays où la langue est parlée
                                     $pays = "SELECT idCountry FROM countrylanguage WHERE idLanguage = $idLangue";
                                     $nbPays = toCount($pays);
+                                    $country = ($nbPays > 1) ? "countries" : "country";
                                     // Définir le lien vers la liste des pays où la langue est parlée
                                     $link = "view_countries.php?langue=$idLangue";
                                 ?>
@@ -125,9 +126,9 @@
                                             <!-- Nom de la langue -->
                                             <h5 class="card-title"><?php echo $langue ?></h5>
                                             <!-- Nombre de pays parlant la langue -->
-                                            <h5><small><?php echo $nbPays ?> pays</small></h5>
+                                            <h5><small><?php echo $nbPays . " " . $country; ?></small></h5>
                                             <!-- Lien vers la liste des pays parlant la langue -->
-                                            <a href="<?php echo $link ?>" class="card-link">Voir les pays</a>
+                                            <a href="<?php echo $link ?>" class="card-link">See countries</a>
                                         </div>
                                     </div>
                                 </div>
@@ -244,7 +245,7 @@
                                             <!-- Afficher la capital du pays -->
                                             <h5><small>Capital : <?php echo $capital ?></small></h5>
                                             <!-- Lien vers la fiche du pays -->
-                                            <a href="country_profile.php?idCountry=<?php echo $response["id"] ?>" class="card-link" target="_blank">Plus d'infos</a>
+                                            <a href="country_profile.php?idCountry=<?php echo $response["id"] ?>" class="card-link" target="_blank">More infos</a>
                                         </div>
                                     </div>
                                 </div>
