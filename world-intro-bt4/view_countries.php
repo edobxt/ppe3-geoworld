@@ -33,9 +33,9 @@
 
         ?>
             <a href="index.php?data=continent" class="btn btn-secondary" style="float:left;">
-                <i class="bi bi-arrow-bar-left"></i> Retour
+                <i class="bi bi-arrow-bar-left"></i> Back
             </a>
-            <h1 align="center">Pays en <?php echo $continent ?></h1>
+            <h1 align="center">Countries in <?php echo $continent ?></h1>
             <!-- Retour vers la page d'accueil -->
             
             <br>
@@ -111,20 +111,20 @@
             $pays = toFetch($requete2);
             ?>
             <a href="index.php?data=langues" class="btn btn-secondary" style="float:left;">
-                <i class="bi bi-arrow-bar-left"></i> Retour
+                <i class="bi bi-arrow-bar-left"></i> Back
             </a>
-            <h1 align="center">Liste des pays parlant : <?php echo $langue ?></h1>
+            <h1 align="center">List of <?php echo $langue ?> speaking countries :</h1>
             <!-- Retour vers la page d'accueil -->
 
             <center>
                 <br>
                 <div class="btn-group" style="color: #fff">
                     <!-- Tous les pays parlant la langue -->
-                    <a href="view_countries.php?langue=<?php echo $idLangue ?>&isOfficial=any" type="button" class="btn btn-primary btn-lg">Tous</a>
+                    <a href="view_countries.php?langue=<?php echo $idLangue ?>&isOfficial=any" type="button" class="btn btn-primary btn-lg">All</a>
                     <!-- Pays dont c'est la langue officielle -->
-                    <a href="view_countries.php?langue=<?php echo $idLangue ?>&isOfficial=true" type="button" class="btn btn-info btn-lg">Officielle</a>
+                    <a href="view_countries.php?langue=<?php echo $idLangue ?>&isOfficial=true" type="button" class="btn btn-info btn-lg">Official</a>
                     <!-- Pays dont ce n'est pas la langue officielle -->
-                    <a href="view_countries.php?langue=<?php echo $idLangue ?>&isOfficial=false" type="button" class="btn btn-secondary btn-lg">Non-officielle</a>
+                    <a href="view_countries.php?langue=<?php echo $idLangue ?>&isOfficial=false" type="button" class="btn btn-secondary btn-lg">Non-official</a>
                 </div>
             </center>
             <br>
@@ -147,7 +147,7 @@
                         // Pourcentage d'utilisation de la langue
                         $pourcentage = $infoLangue["Percentage"];
                         // Définir s'il s'agit de la langue officielle du pays
-                        $officiel = ($infoLangue["IsOfficial"] == "T") ? " (officielle)" : "";
+                        $officiel = ($infoLangue["IsOfficial"] == "T") ? " (official)" : "";
                     ?>
                         <div class="col-sm-4">
                             <div class="card" style="width: 20rem; margin: 10px;">
@@ -155,9 +155,9 @@
                                     <!-- Nom du pays parlant la langue -->
                                     <h5 class="card-title"><?php echo $nomPays . $officiel ?></h5>
                                     <!-- Pourcentage de la population parlant la langue -->
-                                    <h5><small><?php echo $pourcentage ?>% de la population</small></h5>
+                                    <h5><small><?php echo $pourcentage ?>% of the population</small></h5>
                                     <!-- Lien vers la fiche du pays parlant la langue -->
-                                    <a href="<?php echo "country_profile.php?idCountry=$idPays" ?>" class="card-link">Voir plus</a>
+                                    <a href="<?php echo "country_profile.php?idCountry=$idPays" ?>" class="card-link">See more</a>
                                 </div>
                             </div>
                         </div>
