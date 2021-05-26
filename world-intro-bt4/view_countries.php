@@ -38,10 +38,11 @@
             unset($colonnePays[15]); // Code2
 
         ?>
-            <h1 style="float:left;">Pays en <?php echo $continent ?></h1>
+            <a href="index.php?data=continent" class="btn btn-secondary" style="float:left;">
+                <i class="bi bi-arrow-bar-left"></i> Retour
+            </a>
+            <h1 align="center">Pays en <?php echo $continent ?></h1>
             <!-- Retour vers la page d'accueil -->
-            <a href="index.php?data=continent" class="btn btn-secondary btn-lg" style="float:right;"><strong>RETOUR</strong></a>
-            <div style="clear: both;"></div>
             
             <br>
             <!-- Tableau listant les pays d'un continent -->
@@ -115,10 +116,12 @@
             //echo $requete2;
             $pays = toFetch($requete2);
             ?>
-            <h1 style="float:left;">Liste des pays parlant : <?php echo $langue ?></h1>
+            <a href="index.php?data=langues" class="btn btn-secondary" style="float:left;">
+                <i class="bi bi-arrow-bar-left"></i> Retour
+            </a>
+            <h1 align="center">Liste des pays parlant : <?php echo $langue ?></h1>
             <!-- Retour vers la page d'accueil -->
-            <a href="index.php?data=langues" class="btn btn-secondary btn-lg" style="float:right;"><strong>RETOUR</strong></a>
-            <div style="clear: both;"></div>
+
             <center>
                 <br>
                 <div class="btn-group" style="color: #fff">
