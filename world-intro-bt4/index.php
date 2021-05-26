@@ -39,15 +39,15 @@
                         break;
 
                         case "pays":
-                            echo "<h4>Pays</h4>";
+                            echo "<h4>Countries</h4>";
                         break;
                         
                         case "langues":
-                            echo "<h4>Langues parlées</h4>";
+                            echo "<h4>Languages</h4>";
                         break;
 
                         case "villes":
-                            echo "<h4>Villes</h4>";
+                            echo "<h4>Cities</h4>";
                         break;
                     }
                 }
