@@ -1,6 +1,6 @@
 <?php  
   // Ajout du header
-  require_once 'header_prof.php';
+  header_page(1);
   // Lien vers les méthodes
   require_once 'inc/connect-db_users.php';
   // Initialisation de la session
@@ -16,8 +16,7 @@
     <div class="container">
         <!-- Entête -->
         <center>
-            <h1>Bienvenue dans l'espace professeur</h1>
-            <button type="button" class="btn btn-primary btn-lg">Voir les données</button>
+            <h1>Welcome to the Teacher's area</h1>
         </center>
         <br>
         <div class="row">
@@ -25,10 +24,10 @@
             <div class="col-sm-6">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Mettre à jour les données</h5>
-                        <p class="card-text">...</p>
+                        <h5 class="card-title">Update</h5>
+                        <p class="card-text">Update the geographic data of countries manually</p>
                         <a href="updateData.php" class="btn btn-primary">
-                            Mettre à jour</a>
+                            Click here</a>
                     </div>
                 </div>
             </div>
@@ -45,13 +44,9 @@
             -->
         </div>
         <br>
-        <!-- Liste des requêtes créées par le professeur -->
+        <!-- Liste des requêtes créées par le professeur 
         <h2>Dernières requêtes effectuées</h2>
-        <?php 
-    $SQLParam = "select * from requetes where idUsers = $idUsers";
-    $MyResult = $pdo_users->query($SQLParam);
-    $MyResult->setFetchMode(PDO::FETCH_ASSOC);
-    ?>
+        
         <table class="table table-borderless">
             <thead>
                 <tr>
@@ -63,30 +58,10 @@
                 </tr>
             </thead>
             <tbody>
-                <?php
-        while($AllResponse = $MyResult->fetch())
-        {
-        ?>
-                <tr>
-                    <th scope="row">
-                        <? echo 1; ?>
-                    </th>
-                    <td>
-                        <? echo $AllResponse["libelle"]; ?>
-                    </td>
-                    <td>
-                        <? echo $AllResponse["requete"]; ?>
-                    </td>
-                    <td>
-                        <? echo $AllResponse["visibilite"]; ?>
-                    </td>
-                    <td>TODO</td>
-                </tr>
-                <?php
-        }
-        ?>
+                
             </tbody>
         </table>
+        -->
     </div>
 </main>
 

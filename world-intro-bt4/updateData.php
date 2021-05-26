@@ -1,6 +1,6 @@
 <?php  
   // Ajout du header
-  require_once 'header_prof.php';
+  header_page(1);
   // Lien vers les méthodes
   require_once 'inc/connect-db.php';
   require_once 'inc/manager-db.php';
@@ -18,13 +18,20 @@
     <div class="col-sm-3">
         <div class="col">
             <!-- Bouton retour -->
-            <a class="btn btn-secondary btn-sm" href="professor.php?idUsers=<?php echo $idUsers;?>"><i
-                    class="bi bi-arrow-bar-left">Retour</i></a>
+            <a class="btn btn-secondary btn" href="professor.php?idUsers=<?php echo $idUsers;?>"><i
+                    class="bi bi-arrow-bar-left"></i> Return</a>
             <br><br>
 
+            <br>
+        </div>
+
+        </br>
+    </div>
+    <div class="col-sm-8">
+        <center>
             <!-- Selectionner un continent -->
             <select name="formContinent" class="form-control" onchange="location = this.value">
-                <option value="">Selectionner un continent</option>
+                <option value="">Select a continent</option>
                 <option value="updateData.php?Continent=Asia">Asia</option>
                 <option value="updateData.php?Continent=Europe">Europe</option>
                 <option value="updateData.php?Continent=North America">North America</option>
@@ -33,12 +40,7 @@
                 <option value="updateData.php?Continent=Oceania">Oceania</option>
                 <option value="updateData.php?Continent=Antarctica">Antarctica</option>
             </select>
-            <br>
-        </div>
-
-        </br>
-    </div>
-    <div class="col-sm-8">
+        </center>
         <?php
         //Afficher tous les pays du continent sélectionné
             if(isset($_REQUEST["Continent"]))
