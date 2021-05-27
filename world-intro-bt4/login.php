@@ -45,7 +45,7 @@
 
                     $idUsers = $_SESSION['idUsers']; 
 
-                    $messageReussi = "Vous êtes connecté.";
+                    $messageReussi = "You are connected.";
                     // Redirection vers la bonne partie en fonction de la catégorie après 2 secondes.
                     if(isset($_SESSION['email']))
                     {
@@ -61,13 +61,13 @@
                 }
                 else
                 {
-                    $erreurMessage = 'Adresse mail ou mot de passe incorrect.';
+                    $erreurMessage = 'Email or password incorrect, Try again !';
                 }
             }
         }
         else
         {
-            $erreurMessage = "Remplir tous les champs.";
+            $erreurMessage = "Fill all the fields please.";
         }
     }
 ?>
@@ -78,7 +78,7 @@
         <center>
             <div class="jumbotron">
                 <!--<i class="bi bi-person-circle" style="font-size:30px;"></i>-->
-                <h1>Connexion</h1><br>
+                <h1>Log in</h1><br>
 
                 <h2>
                     <?php 
@@ -97,16 +97,16 @@
 
                 <form method="post">
                     <div class="form-group col-md-5">
-                        <input type="email" class="form-control" name="email" placeholder="Adresse mail" required />
+                        <input type="email" class="form-control" name="email" placeholder="Email" required />
                     </div>
                     <div class="form-group col-md-5">
-                        <input type="password" class="form-control" name="mdp" placeholder="Mot de passe" required />
+                        <input type="password" class="form-control" name="mdp" placeholder="Password" required />
                     </div>
 
-                    <input type="submit" name="submit" value="Connexion" class="btn btn-primary">
+                    <input type="submit" name="submit" value="Connection" class="btn btn-primary">
                 </form>
                 <br>
-                <h4>Vous n'avez pas de compte ?</h4> <a href="register.php">Cliquez ici</a>
+                <h4>Don't have an account?</h4> <a href="register.php">Click here.</a>
             </div>
         </center>
     </div>

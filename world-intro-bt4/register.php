@@ -46,18 +46,18 @@
                     } 
                     //Liste de tous les messages d'erreurs
                     else {
-                        $erreurMessage = "Votre mot de passe n'est pas correct. Réessayez!";
+                        $erreurMessage = "Your password isn't correct. Try again!";
                     }
 
                 } else {
-                    $erreurMessage = "Précisez qui êtes-vous.";
+                    $erreurMessage = "Tell me who you are.";
                 }
 
             } else {
-                $erreurMessage = "Votre adresse mail n'est pas valide. Réessayez!";
+                $erreurMessage = "Your email isn't valid. Try again!";
             }
         } else {
-            $erreurMessage = "Complétez tous les champs.";
+            $erreurMessage = "Fill all the fields please.";
         }
         
     }
@@ -68,7 +68,7 @@
     <div class="container">
         <center>
             <div class="jumbotron">
-                <h1>Inscription</h1>
+                <h1>Register</h1>
                 <br>
                 <h2>
                     <?php
@@ -85,44 +85,43 @@
                     <!-- Nom / Prénom -->
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <input type="text" class="form-control" name="nom" placeholder="Nom de famille" required />
+                            <input type="text" class="form-control" name="nom" placeholder="Last name" required />
                         </div>
                         <div class="form-group col-md-6">
-                            <input type="text" class="form-control" name="prenom" placeholder="Prénom" required />
+                            <input type="text" class="form-control" name="prenom" placeholder="First name" required />
                         </div>
                     </div>
 
                     <!-- Adresse mail -->
                     <div class="form-group">
-                        <input type="email" class="form-control" name="email" placeholder="Adresse mail" required>
+                        <input type="email" class="form-control" name="email" placeholder="Email" required>
                     </div>
 
                     <!-- Identifier quel type de personne qui s'inscrit (un professeur ou un élève) -->
-                    <h4>Qui êtes-vous ?</h4>
+                    <h4>Who are you?</h4>
                     <div class="form-check">
                         <input type="radio" class="form-check-input" name="categorie" value="2">
-                        <label for="etudiant">Etudiant</label><br>
+                        <label for="etudiant">Student</label><br>
                     </div>
                     <div class="form-check">
                         <input type="radio" class="form-check-input" name="categorie" value="3">
-                        <label for="professeur">Professeur</label><br><br>
+                        <label for="professeur">Teacher</label><br><br>
                     </div>
 
                     <!-- Mot de passe -->
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <input type="password" class="form-control" name="mdp" placeholder="Mot de passe"
-                                required />
+                            <input type="password" class="form-control" name="mdp" placeholder="Password" required />
                         </div>
                         <div class="form-group col-md-6">
                             <input type="password" class="form-control" name="mdp_confirm"
-                                placeholder="Confirmer le mot de passe" required />
+                                placeholder="Confirm the password" required />
                         </div>
                     </div>
                     <br>
 
                     <!-- Bouton pour valider le formulaire -->
-                    <input type="submit" name="submit" value="Valider" class="btn btn-primary">
+                    <input type="submit" name="submit" value="Validate" class="btn btn-primary">
                 </form>
             </div>
         </center>

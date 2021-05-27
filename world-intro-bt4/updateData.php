@@ -18,7 +18,7 @@
         <div class="col">
             <!-- Bouton retour -->
             <a class="btn btn-secondary btn" href="professor.php?idUsers=<?php echo $idUsers;?>"><i
-                    class="bi bi-arrow-bar-left"></i> Return</a>
+                    class="bi bi-arrow-bar-left"></i> Back</a>
             <br><br>
 
             <br>

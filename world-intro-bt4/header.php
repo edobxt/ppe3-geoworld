@@ -51,7 +51,7 @@
             <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                 <ul class="navbar-nav mr-auto">
                     <!--<li class="nav-item active">
-                        <a class="nav-link" href="index.php">Accueil</a>
+                        <a class="nav-link" href="index.php">Home</a>
                     </li>-->
                     <?php 
                     header_page();
@@ -67,20 +67,20 @@
                     if (isset($_SESSION["idUsers"]))
                     {
                     ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="logout.php">
-                                <i class="bi bi-box-arrow-right" style="font-size:16px; color:#fff;"></i>
-                            </a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.php">
+                            <i class="bi bi-box-arrow-right" style="font-size:16px; color:#fff;"></i>
+                        </a>
+                    </li>
                     <?php
                     } else {
                     ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="register.php">Inscription</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="login.php"><i class="bi bi-person-circle"></i></a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="register.php">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.php"><i class="bi bi-person-circle"></i></a>
+                    </li>
                     <?php
                     }
                     ?>
