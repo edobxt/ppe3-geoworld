@@ -16,7 +16,7 @@
 <main role="main" class="flex-shrink-0">
     <div class="container-fluid">
         <!-- Bouton retour -->
-        <a class="btn btn-secondary btn" href="updateData.php"><i class="bi bi-arrow-bar-left"></i> Retour</a>
+        <a class="btn btn-secondary btn" href="updateData.php"><i class="bi bi-arrow-bar-left"></i> Back</a>
         <!-- En tête -->
         <center>
             <?php 
@@ -79,7 +79,7 @@
                 </tr>
             </table>
             <input type="hidden" name="idCountry" value="<?php echo $idCountry ?>">
-            <input type="submit" name="submit" value="Mettre à jour" class="btn btn-primary" id='notifier-btn'>
+            <input type="submit" name="submit" value="Update" class="btn btn-primary" id='notifier-btn'>
         </form>
         <script>
         document.getElementById("notifier-btn").onclick = notifier;
@@ -89,7 +89,7 @@
 
             /* Vérifie si le navigateur est compatible avec les notifications */
             if (!Notification) {
-                alert('Le navigateur ne supporte pas les notifications.');
+                alert('The browser does not support notifications.');
             }
             /* Si le navigateur prend en charge les notifications,
             on demande la permission si les notifications ne sont pas permises */
@@ -106,7 +106,7 @@
 
                 // Affichage du message
                 var notification = new Notification('Geoworld', {
-                    body: 'La mise à jour a bien été effectué',
+                    body: 'The update has been done.',
                     //image: "",
                 });
 

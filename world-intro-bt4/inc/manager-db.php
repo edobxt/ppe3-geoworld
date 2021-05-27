@@ -145,10 +145,10 @@ function header_page()
         // Affichage par défaut
         default:
         ?>
-            <li class="nav-item">
-                <a class="nav-link" href="index.php">Accueil</a>
-            </li>
-            <?php
+<li class="nav-item">
+    <a class="nav-link" href="index.php">Home</a>
+</li>
+<?php
             // Si l'utilisateur est connecté
             if (isset($_SESSION['idUsers']))
             {
@@ -156,33 +156,33 @@ function header_page()
                 if ($_SESSION['idCategories'] == 3)
                 {
                 ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="professor.php">Teacher's area</a>
-                    </li>
-                <?php
+<li class="nav-item">
+    <a class="nav-link" href="professor.php">Teacher's area</a>
+</li>
+<?php
                 }
                 
                 // Si l'utilisateur est un élève
                 if ($_SESSION['idCategories'] == 2)
                 {
                 ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="student.php">Student's area</a>
-                    </li>
-                <?php
+<li class="nav-item">
+    <a class="nav-link" href="student.php">Student's area</a>
+</li>
+<?php
                 }
             }
             ?>
-        <?php
+<?php
         break;
 
         // Affichage à partir de la page d'accueil
         case "index":
         ?>
-            <li class="nav-item active">
-                <a class="nav-link" href="index.php">Accueil</a>
-            </li>
-            <?php
+<li class="nav-item active">
+    <a class="nav-link" href="index.php">Home</a>
+</li>
+<?php
             // Si l'utilisateur est connecté
             if (isset($_SESSION['idUsers']))
             {
@@ -190,48 +190,48 @@ function header_page()
                 if ($_SESSION['idCategories'] == 3)
                 {
                 ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="professor.php">Teacher's area</a>
-                    </li>
-                <?php
+<li class="nav-item">
+    <a class="nav-link" href="professor.php">Teacher's area</a>
+</li>
+<?php
                 }
                 
                 // Si l'utilisateur est un élève
                 if ($_SESSION['idCategories'] == 2)
                 {
                 ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="student.php">Student's area</a> 
-                    </li>
-                <?php
+<li class="nav-item">
+    <a class="nav-link" href="student.php">Student's area</a>
+</li>
+<?php
                 }
             }
             ?>
-        <?php
+<?php
         break;
 
         // Affichage à partir de la partie professeur
         case "professor":
         ?>
-            <li class="nav-item">
-                <a class="nav-link" href="index.php">Accueil</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="professor.php">Teacher's area</a>
-            </li>
-        <?php
+<li class="nav-item">
+    <a class="nav-link" href="index.php">Home</a>
+</li>
+<li class="nav-item active">
+    <a class="nav-link" href="professor.php">Teacher's area</a>
+</li>
+<?php
         break;
 
         // Affichage à partir de la partie élève
         case "student":
         ?>
-            <li class="nav-item">
-                <a class="nav-link" href="index.php">Accueil</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="student.php">Student's area</a>
-            </li>
-        <?php
+<li class="nav-item">
+    <a class="nav-link" href="index.php">Home</a>
+</li>
+<li class="nav-item active">
+    <a class="nav-link" href="student.php">Student's area</a>
+</li>
+<?php
         break;
     }
 }
